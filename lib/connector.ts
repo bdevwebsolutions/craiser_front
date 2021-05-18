@@ -8,39 +8,47 @@ export const connector = new WalletConnect({
 
 
 //Initialse a wallet connection
-export const initiateConnection = (dispatch) => {
+export const initiateConnection = async (dispatch) => {
   
     // Check if connection is already established
+
     if (!connector.connected) {
       // create new session
-      connector.createSession();
+      //connector.createSession();
+      await connector.connect().then((res) => {
+        dispatch(res);
+            // Subscribe to connection events
+        connector.on("connect", (error, payload) => {
+          if (error) {
+            console.log(error);
+          }
+          dispatch(payload.params[0]);
+        });
+        
+        connector.on("session_update", (error, payload) => {
+          if (error) {
+            console.log(error);
+          }
+        
+          // Get updated accounts and chainId
+          dispatch(payload.params[0]);
+        }); 
+        
+        connector.on("disconnect", (error, payload) => {
+          if (error) {
+            console.log(error);
+          }
+        
+          // Delete connector
+          dispatch({});
+        });
+      }).catch(err => {
+        location.reload();
+      })
+    
     }
     
-    // Subscribe to connection events
-    connector.on("connect", (error, payload) => {
-      if (error) {
-        console.log(error);
-      }
-      dispatch(payload.params[0]);
-    });
-    
-    connector.on("session_update", (error, payload) => {
-      if (error) {
-        console.log(error);
-      }
-    
-      // Get updated accounts and chainId
-      dispatch(payload.params[0]);
-    }); 
-    
-    connector.on("disconnect", (error, payload) => {
-      if (error) {
-        console.log(error);
-      }
-    
-      // Delete connector
-      dispatch({});
-    });
+
 }
 
 //Disband a wallet connection
