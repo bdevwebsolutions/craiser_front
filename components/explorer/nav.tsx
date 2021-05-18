@@ -1,12 +1,15 @@
 import React from 'react'
 import styled from 'styled-components';
+import {AiFillFire, AiFillRocket} from 'react-icons/ai';
+import {BiPlusMedical} from 'react-icons/bi';
+import { colors } from '../../styles/colors';
 
 export const Nav = () => {
     return (
     <List>
-        <ListItem>HOT</ListItem>
-        <ListItem>TRENDING</ListItem>
-        <ListItem>NEW</ListItem>
+        <ListItem>HOT <AiFillFire/></ListItem>
+        <ListItem>TRENDING <AiFillRocket/></ListItem>
+        <ListItem>NEW <BiPlusMedical/></ListItem>
     </List>
     )
 }
@@ -30,7 +33,13 @@ const ListItem = styled.li`
     font-size: 13px;
     :hover{
         font-weight: bold;
+        svg{
+            fill: ${colors.seven};
+        }
     }
 
     cursor: pointer;
+    width: 110px;
+
+
 `

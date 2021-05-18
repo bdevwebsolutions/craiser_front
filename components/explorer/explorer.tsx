@@ -23,7 +23,7 @@ const Container = styled.div`
     padding: 0px 35px 0px 15px;
 
     display: grid;
-    grid-template-columns: 210px auto;
+    grid-template-columns: 330px auto;
 
 
     border-bottom: solid 2px ${colors.three};
