@@ -43,10 +43,9 @@ export const Connect = () => {
 const P = styled.p`
     font-weight: bold;
     cursor: pointer;
+    text-align: right;
 `
 
 const Container = styled.div`
 
 `
-
-const Modal = styled.div``
