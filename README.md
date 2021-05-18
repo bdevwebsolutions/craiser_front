@@ -38,9 +38,15 @@
 
 ---
 
-### MISC
+### Misc
     - Pages
         - Try to stay single page as much as possible for easier state management
     
     - Styles
         -Some global styles and a typscript color object
+
+        ---
+
+### Todo
+    - Routes
+    - Profile
