@@ -7,6 +7,9 @@
 
 */
 
+//USETOOLTIP
+//USEMODALn
+
 import React from 'react'
 import styled from 'styled-components';
 import { Logo } from './logo';
@@ -31,9 +34,10 @@ const Container = styled.div`
     max-height: 60px;
     padding:  0px 15px;
     line-height: 60px;
+    border-radius: 10px;
 
     display: grid;
-    grid-template-columns: 200px auto 100px;
+    grid-template-columns: 200px auto auto;
     grid-gap: 15px;
     overflow: hidden;
 

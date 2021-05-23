@@ -11,4 +11,5 @@ const Header = styled.h1`
     font-weight: bold;
     letter-spacing: 0px;
     text-align: center;
+    cursor: pointer;
 `

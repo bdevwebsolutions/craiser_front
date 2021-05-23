@@ -7,4 +7,6 @@ export const colors = {
     six: "#9d4eddff",
     seven: "#c77dffff",
     eight: "#e0aaffff",
+
+    oneTransparant: "#10002bcc",
 }
