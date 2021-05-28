@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import React from 'react'
 import { ConnectionContext } from '../../../context/connectionContext';
 
@@ -13,7 +14,7 @@ import { ConnectionType, Container, P } from './styles';
 export const Connect = () => {
 
     const {isConnected, setIsConnected} = React.useContext(ConnectionContext);
-
+    const router = useRouter();
     //POPUP
     const [popup, setPopup] = React.useState(false);
 
@@ -25,6 +26,9 @@ export const Connect = () => {
         } else {
             disbandConnection(setIsConnected)
             setPopup(false)
+            if(router.pathname.includes('/profile')){
+                router.push('/')
+            }
         }
     }
 
