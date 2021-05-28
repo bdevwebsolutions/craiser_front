@@ -5,10 +5,15 @@ import Banner from '../components/banner';
 import Explorer from '../components/explorer/explorer';
 import React from 'react';
 
+//styled-components
 import {Container} from '../styles/pageStyles'
 
+//ROUTE AUTH HOC
+import withAuth from '../components/hoc/withAuth';
+ 
+const Profile = () => {
 
-export default function Home() {
+
 
   return (
     <>
@@ -20,7 +25,13 @@ export default function Home() {
       <Container>
         <Banner/>
         <Explorer/>
+        PROFILE
       </Container>
     </>
   )
 }
+
+
+export default withAuth(Profile);
+
+

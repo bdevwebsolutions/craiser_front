@@ -1,6 +1,8 @@
 import React, { ReactNode, Dispatch } from 'react'
-import styled from 'styled-components'
-import { colors } from '../../styles/colors'
+
+
+//Styled-components
+import {Container, Justify, Content, Close} from './styles';
 
 type Props = {
     children: ReactNode,
@@ -24,48 +26,6 @@ const Popup: React.FC<Props> = ({active, children, setActive}) => {
 }
 
 
-const Container = styled.div<{show: boolean}>`
-
-    visibility: ${props => props.show ? "visible" : "hidden"};
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100vh;
-    width: 100vw;
-    background-color: ${colors.oneTransparant};
-    z-index: 100;
-
-    display: grid;
-    justify-content: center;
-    align-items: center;
-
-`
-
-const Justify = styled.div`
-    width: 500px;
-
-    display: grid;
-    grid-template-rows: 1fr auto;
-    grid-gap: 15px;
-
-`
-
-const Close = styled.button`
-    background-color: ${colors.two};
-    padding: 10px;
-    border: none;
-    cursor: pointer;
-    border-radius:5px;
-    
-    :hover{
-        font-weight: bold;
-    }
-`
-
-const Content = styled.div`
-
-
-`
 
 
 export default Popup;

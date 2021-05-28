@@ -5,10 +5,12 @@ import Banner from '../components/banner';
 import Explorer from '../components/explorer/explorer';
 import React from 'react';
 
+//styled-components
 import {Container} from '../styles/pageStyles'
+ 
+export default function Hot() {
 
-
-export default function Home() {
+  //DISABLE ROUTE WHEN NOT LOGGED IN
 
   return (
     <>
@@ -20,7 +22,11 @@ export default function Home() {
       <Container>
         <Banner/>
         <Explorer/>
+        HOT
       </Container>
     </>
   )
 }
+
+
+
