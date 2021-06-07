@@ -30,14 +30,18 @@ export const useTooltip = (props: Props): Return =>  {
     const createToolTip = () => {
         const bounds = props.ref.getBoundingClientRect()
         let top = bounds.top + document.documentElement.scrollTop;
+
         let left = bounds.left
         if(left + 150 > document.documentElement.clientWidth){
             left = left - 150;
         }
+
+        console.log("top:" + bounds.top + "height window:" + window.innerHeight);
+
         let marginTop = props.ref.offsetHeight;
         let maxWidth = props.ref.offsetWidth;
         console.log(marginTop, maxWidth);
-        setTooltip(<Tooltip marginTop={marginTop} maxWidth={maxWidth} top={top} left={left}><p>{props.description}</p></Tooltip>)
+        setTooltip(<Tooltip  marginTop={marginTop} maxWidth={maxWidth} top={top} left={left}><p>{props.description}</p></Tooltip>)
     }
 
     if(showToolTip || props.exception){
