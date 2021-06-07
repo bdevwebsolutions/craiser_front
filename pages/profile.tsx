@@ -1,19 +1,30 @@
 import Head from 'next/head'
+import {useRouter} from 'next/router';
 
 //Logical components
 import Banner from '../components/banner';
 import Explorer from '../components/explorer/explorer';
 import React from 'react';
 
+//context
+import {ConnectionContext} from '../context/connectionContext';
+
+
 //styled-components
 import {Container} from '../styles/pageStyles'
+import ToolBar from '../components/toolbar';
 
-//ROUTE AUTH HOC
-import withAuth from '../components/hoc/withAuth';
  
 const Profile = () => {
 
+  const {isConnected} = React.useContext(ConnectionContext);
+  const Router = useRouter()
 
+  React.useEffect(() => {
+    if(!isConnected){
+      Router.replace('/');
+    }
+  }, [isConnected])
 
   return (
     <>
@@ -23,6 +34,7 @@ const Profile = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
+        <ToolBar/>
         <Banner/>
         <Explorer/>
         PROFILE
@@ -32,6 +44,6 @@ const Profile = () => {
 }
 
 
-export default withAuth(Profile);
+export default Profile;
 
 

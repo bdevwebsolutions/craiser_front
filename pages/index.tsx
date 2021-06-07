@@ -6,6 +6,7 @@ import Explorer from '../components/explorer/explorer';
 import React from 'react';
 
 import {Container} from '../styles/pageStyles'
+import ToolBar from '../components/toolbar';
 
 
 export default function Home() {
@@ -18,6 +19,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
+        <ToolBar/>
         <Banner/>
         <Explorer/>
       </Container>

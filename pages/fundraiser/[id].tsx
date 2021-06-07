@@ -1,17 +1,14 @@
 import Head from 'next/head'
 
 //Logical components
-import Banner from '../components/banner';
-import Explorer from '../components/explorer/explorer';
+import Banner from '../../components/banner';
+import Explorer from '../../components/explorer/explorer';
 import React from 'react';
 
-//styled-components
-import {Container} from '../styles/pageStyles'
-import ToolBar from '../components/toolbar';
- 
-export default function Trending() {
+import {Container} from '../../styles/pageStyles'
 
-  //DISABLE ROUTE WHEN NOT LOGGED IN
+
+export default function Home() {
 
   return (
     <>
@@ -21,14 +18,11 @@ export default function Trending() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <ToolBar/>
         <Banner/>
         <Explorer/>
-        TRENDING
+        ref
       </Container>
     </>
   )
 }
-
-
 

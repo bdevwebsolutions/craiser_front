@@ -10,9 +10,12 @@ export const Container = styled.div`
 
     display: grid;
     grid-template-columns: 330px auto;
-
-
     border-bottom: solid 2px ${colors.three};
+
+    @media only screen and (max-width: 850px){
+        grid-template-columns: 1fr;
+        height: auto;
+    }
 
 `
 
@@ -45,6 +48,11 @@ export const Profile = styled.p<{disabled: boolean}>`
         }
     }
 
+    @media only screen and (max-width: 850px){
+        text-align: left;
+        margin-bottom: 15px;
+    }
+
 `
 
 export const List = styled.ul`
@@ -59,6 +67,12 @@ export const List = styled.ul`
     width: 100%;
     box-sizing: border-box;
     text-align: center;
+
+    @media only screen and (max-width: 850px){
+        width: auto;
+        display: inline;
+        text-align: left;
+    }
 `
 
 export const ListItem = styled.li`
@@ -73,6 +87,13 @@ export const ListItem = styled.li`
 
     cursor: pointer;
     width: 110px;
+
+    @media only screen and (max-width: 850px){
+        flex-grow: auto;
+        display: inline-block;
+        width: auto;
+        margin-right: 15px;
+    }
 
 
 `

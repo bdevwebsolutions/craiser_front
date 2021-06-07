@@ -1,43 +1,59 @@
-import { useRouter } from 'next/router';
+/*
+
+    - CONNECTION BUTTON IN BANNER
+
+    This components creates and disbands the connection between the dapp and a wallet;
+    Uses Web3Modal for easy connection UI.
+
+    If connection succeeds, the isConnected context will be set to TRUE and the 
+    setProvider context will contain the web3 connection with the provider that has been chosen.
+
+
+*/
+
+//
 import React from 'react'
+
+//Wallet connection
 import { ConnectionContext } from '../../../context/connectionContext';
+import {handleWeb3Connect, disbandWeb3Connection} from '../../../lib/web3Connect';
 
-//Connection lib
-import {initiateConnection, disbandConnection} from '../../../lib/connector';
-
-//Components
-import Popup from '../../popup/popup';
+//Context
+import { ProviderContext } from '../../../context/providerContext';
 
 //Styled-components
-import { ConnectionType, Container, P } from './styles';
+import { Container, P } from './styles';
+import { useTooltip } from '../../../hooks/useTooltip';
 
-export const Connect = () => {
+
+
+export const Connect: React.FC = () => {
 
     const {isConnected, setIsConnected} = React.useContext(ConnectionContext);
-    const router = useRouter();
-    //POPUP
-    const [popup, setPopup] = React.useState(false);
+    const {setProvider} = React.useContext(ProviderContext);
 
-    //CONNECTION FUNCTIONS
-    const handleWalletConnect = () => {
-        if(!isConnected){
-            initiateConnection(setIsConnected)
-            setPopup(false)
-        } else {
-            disbandConnection(setIsConnected)
-            setPopup(false)
-            if(router.pathname.includes('/profile')){
-                router.push('/')
-            }
-        }
-    }
+    //TOOLTIP
+    const tooltipRef = React.useRef(null);
+    const [activateTooltip, setActivateTooltip] = React.useState(false);
+    const tooltip = useTooltip({description: "Disconnecting from our app may require an additional disconnection process within your wallet", ref: tooltipRef.current, active: activateTooltip})
 
     return (
     <Container>
-        <P onClick={() => {setPopup(!popup)}}>{!isConnected ? "CONNECT" : "DISCONNECT"}</P>
-        <Popup active={popup} setActive={setPopup}>
-            <ConnectionType onClick={() => handleWalletConnect()}><p>WalletConnect</p> <b>{!isConnected ? "Click To Connect" : "Click To Disconnect"}</b></ConnectionType>
-        </Popup>
+        {tooltip}
+        <P  ref={tooltipRef} 
+            onClick={() => {
+                if(!isConnected){
+                    handleWeb3Connect(setIsConnected, setProvider)
+                } else {
+                    disbandWeb3Connection(setIsConnected, setProvider);
+                }
+                }
+            }
+            onMouseEnter={() => setActivateTooltip(true)}
+            onMouseLeave={() => setActivateTooltip(false)}
+        >
+        {!isConnected ? "CONNECT" : "DISCONNECT"}
+        </P>
     </Container>
     )
 }

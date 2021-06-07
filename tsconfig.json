@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "lib/web3.ts", "next.config.js"  ],
+, "lib/web3.ts", "next.config.js", "lib/web3Connect.js"  ],
   "exclude": [
     "node_modules"
   ]

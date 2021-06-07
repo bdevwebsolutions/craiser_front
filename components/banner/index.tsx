@@ -1,3 +1,12 @@
+/*
+
+    - MAIN BANNER COMPONENT INCLUDES:
+        * LOGO
+        * REFBAR
+        * CONNECTIONBUTTON
+
+*/
+
 import React from 'react'
 import { Logo } from './logo/logo';
 import { Refbar } from "./refbar/refbar";

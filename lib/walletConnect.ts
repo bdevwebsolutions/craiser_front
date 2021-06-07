@@ -8,9 +8,13 @@ export const connector = new WalletConnect({
     qrcodeModal: QRCodeModal,
 });
 
+type Props = {
+  
+}
+
 
 //Initialse a wallet connection
-export const initiateConnection = async (setConnectionState: React.Dispatch<boolean>) => {
+export const initiateConnection = async (setConnectionState: React.Dispatch<boolean>, setAddress: React.Dispatch<string>, setProvider: React.Dispatch<"walletconnect" | "metamask" | undefined>) => {
   
     // Check if connection is already established
 
@@ -19,7 +23,8 @@ export const initiateConnection = async (setConnectionState: React.Dispatch<bool
       //connector.createSession();
       await connector.connect().then((res) => {
         setConnectionState(true);
-
+        setAddress(res.accounts[0]);
+        setProvider('walletconnect');
             // Subscribe to connection events
         connector.on("connect", (error, payload) => {
           if (error) {
@@ -51,9 +56,11 @@ export const initiateConnection = async (setConnectionState: React.Dispatch<bool
 }
 
 //Disband a wallet connection
-export const disbandConnection = (setConnectionState: React.Dispatch<boolean>) => {
+export const disbandConnection = (setConnectionState: React.Dispatch<boolean>, setAddress: React.Dispatch<string>, setProvider: React.Dispatch<"walletconnect" | "metamask" | undefined>) => {
   if(connector.connected){
       connector.killSession()
       setConnectionState(false);
+      setAddress("");
+      setProvider(undefined);
   }
 }

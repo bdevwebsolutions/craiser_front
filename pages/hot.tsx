@@ -7,6 +7,7 @@ import React from 'react';
 
 //styled-components
 import {Container} from '../styles/pageStyles'
+import ToolBar from '../components/toolbar';
  
 export default function Hot() {
 
@@ -20,6 +21,7 @@ export default function Hot() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
+        <ToolBar/>
         <Banner/>
         <Explorer/>
         HOT

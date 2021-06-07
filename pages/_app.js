@@ -16,12 +16,18 @@ Router.events.on('routeChangeError', () => {NProgress.done()})
 
 //CONNECTIONSTATE
 import ConnectionProvider from '../context/connectionContext';
+import ProviderProvider from '../context/providerContext';
+import ToolTipProvider from '../context/tooltipContext';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ConnectionProvider>
-      <Component {...pageProps} />
-    </ConnectionProvider>
+    <ToolTipProvider>
+      <ProviderProvider>
+        <ConnectionProvider>
+          <Component {...pageProps} />
+        </ConnectionProvider>
+      </ProviderProvider>
+    </ToolTipProvider>
   )
 }
 

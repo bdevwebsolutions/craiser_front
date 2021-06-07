@@ -8,15 +8,17 @@ import Link from 'next/link';
 import {Nav} from './nav';
 import { Container, Profile } from './styles';
 import { ConnectionContext } from '../../context/connectionContext';
+import { useRouter } from 'next/router';
 
 const Explorer = () => {
 
     const {isConnected} = React.useContext(ConnectionContext);
+    const router = useRouter();
 
     return (
         <Container>
             <Nav/>
-            <Profile disabled={!isConnected}><sub><Link href="/profile">PROFILE </Link><Link href="/profile"><FaUserAlt/></Link></sub></Profile>
+            <Profile disabled={!isConnected}><sub><Link href={isConnected ? "/profile" : router.route}>PROFILE </Link><Link href="/profile"><FaUserAlt/></Link></sub></Profile>
         </Container>
     )
 }
