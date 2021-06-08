@@ -14,6 +14,10 @@ type Return = {
 
 }
 
+type Quadrant = {
+
+}
+
 export const useTooltip = (props: Props): Return =>  {
      
     const [tooltip, setTooltip] = React.useState<Partial<React.ReactNode>>()
@@ -27,21 +31,46 @@ export const useTooltip = (props: Props): Return =>  {
         }
     }, [props.active]);
 
+    const calculateQuadrants = (width: number, height: number, x: number, y:number): "topLeft" | "topRight" | "bottomLeft" | "bottomRight" => {
+        //Calculate dimensions
+        let halfWidth = width / 2;
+        let halfHeight = height / 2;
+        let topLeft = [[0, halfWidth],[0, halfHeight], "topLeft"]
+        let topRight = [[halfWidth, width], [0, halfHeight], "topRight"];
+        let bottomLeft = [[0, halfWidth],[halfHeight, height], "bottomLeft"];
+        let bottomRight = [[halfWidth, width],[halfHeight, height], "bottomRight"];
+        let dimensions = [topLeft, topRight, bottomLeft, bottomRight];
+
+        //Determen the current object's place in the dimensions
+        let quadrant = dimensions.filter((el) => {
+            if(el[0][0] <= x && x < el[0][1]){
+                if(el[1][0] <= y && y < el[1][1]){
+                return true
+                } else {
+                return false
+                }
+            }
+        })
+        //@ts-ignore
+        return quadrant[0][2]
+
+    }
+
     const createToolTip = () => {
         const bounds = props.ref.getBoundingClientRect()
-        let top = bounds.top + document.documentElement.scrollTop;
-
-        let left = bounds.left
-        if(left + 150 > document.documentElement.clientWidth){
-            left = left - 150;
+        const {height, width} = document.documentElement.getBoundingClientRect()
+        let quadrant = calculateQuadrants(width, height, bounds.x, bounds.y);
+        
+        if(quadrant === "topLeft"){
+            setTooltip(<ToolTipTopLeft top={bounds.y + bounds.height} left={bounds.x + bounds.width} ><p>{props.description}</p></ToolTipTopLeft>)
+        } else if (quadrant === "topRight"){
+            setTooltip(<ToolTipTopRight top={bounds.y + bounds.height} left={bounds.x}><p>{props.description}</p></ToolTipTopRight>)
+        } else if(quadrant === "bottomLeft"){
+            setTooltip(<ToolTipBottomLeft bottom={height - bounds.y} left={bounds.x + bounds.width}><p>{props.description}</p></ToolTipBottomLeft>)
+        } else {
+            setTooltip(<ToolTipBottomRight bottom={height - bounds.y} right={width - bounds.x}><p>{props.description}</p></ToolTipBottomRight>)
         }
 
-        console.log("top:" + bounds.top + "height window:" + window.innerHeight);
-
-        let marginTop = props.ref.offsetHeight;
-        let maxWidth = props.ref.offsetWidth;
-        console.log(marginTop, maxWidth);
-        setTooltip(<Tooltip  marginTop={marginTop} maxWidth={maxWidth} top={top} left={left}><p>{props.description}</p></Tooltip>)
     }
 
     if(showToolTip || props.exception){
@@ -53,13 +82,11 @@ export const useTooltip = (props: Props): Return =>  {
 }
 
 
-const Tooltip = styled.div<{top: number, left: number, marginTop: number, maxWidth: number}>`
+const Tooltip = styled.div`
     position: absolute;
-    top: ${props => props.top + props.marginTop + "px"};
-    left: ${props => props.left + "px"};
-    max-width: 150px;
+    width: 150px;
     text-align: left;
-    box-shadow: 10px 10px 10px ${colors.one};
+    box-shadow: 0 0 20px 2px ${colors.one};
     border-radius: 5px;
 
     *{
@@ -75,4 +102,25 @@ const Tooltip = styled.div<{top: number, left: number, marginTop: number, maxWid
     }
 
     background-color: ${colors.four};
+`
+
+const ToolTipTopLeft = styled(Tooltip)<{top: number, left: number}>`
+    top: ${props => props.top + "px"};
+    left: ${props => props.left + "px"};
+`
+
+const ToolTipTopRight = styled(Tooltip)<{top: number, left: number}>`
+    top: ${props => props.top + "px"};
+    left: ${props => props.left - 150 + "px"};
+
+`
+
+const ToolTipBottomLeft = styled(Tooltip)<{bottom: number, left: number}>`
+    bottom: ${props => props.bottom + "px"};
+    left: ${props => props.left + "px"};
+`
+
+const ToolTipBottomRight = styled(Tooltip)<{bottom: number, right: number}>`
+    bottom: ${props => props.bottom + "px"};
+    right: ${props => props.right + "px"};
 `
