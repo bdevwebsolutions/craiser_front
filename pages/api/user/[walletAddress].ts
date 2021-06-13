@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import mongoose from 'mongoose';
+import NextCors from 'nextjs-cors';
 
 //API CALL
 
@@ -10,6 +11,13 @@ import mongoose from 'mongoose';
 
 */
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+
+    await NextCors(req, res, {
+        // Options
+        methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE'],
+        origin: '*',
+        optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+    });
 
     //get walletAddress from query
     const {walletAddress} = req.query; 
