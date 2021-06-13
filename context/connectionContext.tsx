@@ -8,15 +8,8 @@ export const ConnectionContext = React.createContext<Partial<{isConnected: boole
 
 const ConnectionProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
 
-    const [isConnected, setIsConnected] = React.useState<boolean>(() => {
-        if(typeof window !== "undefined"){
-            if(window.localStorage.getItem('walletconnect') !== null){
-                return true;
-            }
-
-            return false;
-        }
-    })
+    //USER CONNECTED STATE
+    const [isConnected, setIsConnected] = React.useState<boolean>(false)
 
     return <ConnectionContext.Provider value={{isConnected, setIsConnected}}>{children}</ConnectionContext.Provider>
 }

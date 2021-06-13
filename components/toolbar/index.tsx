@@ -9,17 +9,18 @@ import { useTooltip } from '../../hooks/useTooltip';
 
 const ToolBar: React.FC = () => {
 
+    //TOOLTIP SETTINGS AND BUTTON
     const {showToolTip, setShowToolTip} = React.useContext(TooltipContext);
     const [activateTooltop, setActivateTooltip] = React.useState(false);
-    const [description, setDescription] = React.useState("Clicking this button will deactivate tooltips on the site");
+    const [description, setDescription] = React.useState("Deactivate tooltips.");
     const pRef = React.useRef(null);
     const tooltip = useTooltip({description, active: activateTooltop, ref: pRef.current, exception: true})
 
     React.useEffect(() => {
         if(showToolTip){
-            setDescription("Clicking this button will deactivate tooltips on the site");
+            setDescription("Deactivate tooltips.");
         } else {
-            setDescription("Clicking this button will activate tooltis on the site");
+            setDescription("Activate tooltips.");
         }
     }, [showToolTip])
 

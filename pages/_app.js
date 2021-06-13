@@ -4,7 +4,7 @@ import {Router} from 'next/router';
 import "nprogress/nprogress.css";
 
 NProgress.configure({
-  minimum: 0.3,
+  minimum: 0.5,
   showSpinner: false,
   easing: "ease",
   speed: 800,
@@ -18,16 +18,19 @@ Router.events.on('routeChangeError', () => {NProgress.done()})
 import ConnectionProvider from '../context/connectionContext';
 import ProviderProvider from '../context/providerContext';
 import ToolTipProvider from '../context/tooltipContext';
+import UserProvider from '../context/userContext';
 
 function MyApp({ Component, pageProps }) {
   return (
-    <ToolTipProvider>
-      <ProviderProvider>
-        <ConnectionProvider>
-          <Component {...pageProps} />
-        </ConnectionProvider>
-      </ProviderProvider>
-    </ToolTipProvider>
+    <UserProvider>
+      <ToolTipProvider>
+        <ProviderProvider>
+          <ConnectionProvider>
+            <Component {...pageProps} />
+          </ConnectionProvider>
+        </ProviderProvider>
+      </ToolTipProvider>
+    </UserProvider>
   )
 }
 

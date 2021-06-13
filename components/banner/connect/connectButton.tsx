@@ -16,14 +16,15 @@ import React from 'react'
 
 //Wallet connection
 import { ConnectionContext } from '../../../context/connectionContext';
-import {handleWeb3Connect, disbandWeb3Connection} from '../../../lib/web3Connect';
+import {handleWeb3Connect } from '../../../lib/web3Connect';
 
 //Context
 import { ProviderContext } from '../../../context/providerContext';
 
 //Styled-components
-import { Container, P } from './styles';
+import { Container, ConnectionButton } from './styles';
 import { useTooltip } from '../../../hooks/useTooltip';
+import { UserContext } from '../../../context/userContext';
 
 
 
@@ -31,29 +32,22 @@ export const Connect: React.FC = () => {
 
     const {isConnected, setIsConnected} = React.useContext(ConnectionContext);
     const {setProvider} = React.useContext(ProviderContext);
+    const {setUserData} = React.useContext(UserContext);
 
     //TOOLTIP
     const tooltipRef = React.useRef(null);
     const [activateTooltip, setActivateTooltip] = React.useState(false);
-    const tooltip = useTooltip({description: "Disconnecting from our app may require an additional disconnection process within your wallet", ref: tooltipRef.current, active: activateTooltip})
+    const tooltip = useTooltip({description: "A true disconnection can only be aquired by disconnecting from your wallet application.", ref: tooltipRef.current, active: activateTooltip})
 
     return (
     <Container>
         {tooltip}
-        <P  ref={tooltipRef} 
-            onClick={() => {
-                if(!isConnected){
-                    handleWeb3Connect(setIsConnected, setProvider)
-                } else {
-                    disbandWeb3Connection(setIsConnected, setProvider);
-                }
-                }
-            }
+        <ConnectionButton
+            ref={tooltipRef} 
+            onClick={() => {!isConnected ? handleWeb3Connect(setIsConnected, setProvider, setUserData) : null}}
             onMouseEnter={() => setActivateTooltip(true)}
             onMouseLeave={() => setActivateTooltip(false)}
-        >
-        {!isConnected ? "CONNECT" : "DISCONNECT"}
-        </P>
+        >{!isConnected ? "CONNECT" : "CONNECTED"}</ConnectionButton>
     </Container>
     )
 }

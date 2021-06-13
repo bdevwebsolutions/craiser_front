@@ -13,18 +13,20 @@ import {ConnectionContext} from '../context/connectionContext';
 //styled-components
 import {Container} from '../styles/pageStyles'
 import ToolBar from '../components/toolbar';
+import { UserContext } from '../context/userContext';
 
  
 const Profile = () => {
 
   const {isConnected} = React.useContext(ConnectionContext);
+  const {userData} = React.useContext(UserContext);
   const Router = useRouter()
 
   React.useEffect(() => {
-    if(!isConnected){
+    if(!isConnected || userData === undefined){
       Router.replace('/');
     }
-  }, [isConnected])
+  }, [isConnected, userData])
 
   return (
     <>
@@ -37,7 +39,7 @@ const Profile = () => {
         <ToolBar/>
         <Banner/>
         <Explorer/>
-        PROFILE
+          {userData !== undefined ? userData.walletAddress : ""}
       </Container>
     </>
   )

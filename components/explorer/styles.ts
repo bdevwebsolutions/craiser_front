@@ -13,7 +13,7 @@ export const Container = styled.div`
     border-bottom: solid 2px ${colors.three};
 
     @media only screen and (max-width: 850px){
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr auto;
         height: auto;
     }
 
@@ -78,14 +78,18 @@ export const List = styled.ul`
 export const ListItem = styled.li`
     flex-grow: 1;
     font-size: 13px;
-    :hover{
-        font-weight: bold;
-        svg{
-            fill: ${colors.seven};
+
+    a{
+        :hover{
+            font-weight: bold;
+            svg{
+                fill: ${colors.seven};
+            }
         }
+        cursor: pointer;
     }
 
-    cursor: pointer;
+
     width: 110px;
 
     @media only screen and (max-width: 850px){

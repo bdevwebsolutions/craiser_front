@@ -3,7 +3,7 @@
 import styled from 'styled-components';
 import {colors} from '../../../styles/colors';
 
-export const P = styled.p`
+export const ConnectionButton = styled.p`
     font-weight: bold;
     cursor: pointer;
     text-align: right;

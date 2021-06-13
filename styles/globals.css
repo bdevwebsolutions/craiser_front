@@ -20,3 +20,7 @@ a {
   font-family: 'Poppins', sans-serif;
   color: white;
 }
+
+#nprogress .bar {
+  background: #e0aaffff !important;
+}

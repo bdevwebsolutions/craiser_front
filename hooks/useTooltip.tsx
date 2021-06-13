@@ -10,13 +10,9 @@ type Props = {
     exception?: boolean,
 }
 
-type Return = {
+type Return = React.ReactNode | null;
 
-}
-
-type Quadrant = {
-
-}
+type Quadrant = "topLeft" | "topRight" | "bottomLeft" | "bottomRight"
 
 export const useTooltip = (props: Props): Return =>  {
      
@@ -31,7 +27,7 @@ export const useTooltip = (props: Props): Return =>  {
         }
     }, [props.active]);
 
-    const calculateQuadrants = (width: number, height: number, x: number, y:number): "topLeft" | "topRight" | "bottomLeft" | "bottomRight" => {
+    const calculateQuadrants = (width: number, height: number, x: number, y:number): Quadrant => {
         //Calculate dimensions
         let halfWidth = width / 2;
         let halfHeight = height / 2;

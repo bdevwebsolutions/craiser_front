@@ -33,9 +33,7 @@ export const fourOFourContainer = styled.div`
 
     display: grid;
     grid-gap: 25px;
-
-    justify-content: center;
-    align-items: center;
+    place-items: center;
 `
 
 
