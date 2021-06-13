@@ -10,6 +10,37 @@ import NextCors from 'nextjs-cors';
     Otherwise create a basic user instance in the db.
 
 */
+
+const projectSchema = new mongoose.Schema({
+    contractAddress: String,
+    title: String,
+    description: String,
+    links: [{type: String}],
+    upvotes: Number,
+})
+
+const userSchema = new mongoose.Schema({
+    walletAddress: {
+        type: String,
+        required: true,
+    },
+    projects: {
+        type: [projectSchema],
+        required: false,
+    },
+    upvotes: {
+        type: [{type: String}],
+        required: false,
+    },
+    following: {
+        type: [{type: String}],
+        required: false,
+    },
+    funding: {
+        type: [{type: String}],
+        required: false,
+    },
+})
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     await NextCors(req, res, {
@@ -29,7 +60,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     //get usermodel
-    let user = mongoose.model('User');
+    let user = mongoose.model('User', userSchema);
 
     //check if user exists in database
     let exists = await user.exists({walletAddress: walletAddress})
