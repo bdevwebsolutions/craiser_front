@@ -79,7 +79,6 @@ export const ListItem = styled.li`
     flex-grow: 1;
     font-size: 13px;
 
-    a{
         :hover{
             font-weight: bold;
             svg{
@@ -87,7 +86,6 @@ export const ListItem = styled.li`
             }
         }
         cursor: pointer;
-    }
 
 
     width: 110px;

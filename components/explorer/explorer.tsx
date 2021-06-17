@@ -18,7 +18,7 @@ const Explorer = () => {
     return (
         <Container>
             <Nav/>
-            <Profile disabled={!isConnected}><sub><Link href={isConnected ? "/profile" : router.route}>PROFILE </Link><Link href="/profile"><FaUserAlt/></Link></sub></Profile>
+            <Profile disabled={!isConnected}><sub><Link href={isConnected ? "/profile" : router.route}>PROFILE </Link><Link href="/profile"><a><FaUserAlt/></a></Link></sub></Profile>
         </Container>
     )
 }

@@ -80,8 +80,14 @@ export const handleWeb3Connect = async (setIsConnected: React.Dispatch<boolean>,
         //Set user data to context
         setUserData(user);
 
-        provider.on("accountsChanged", (accounts: string[]) => {
-            console.log(accounts);
+        provider.on("accountsChanged", async (accounts: string[]) => {
+            //Change userContext
+            let user = await fetch(`/api/user/${accounts[0]}`).then(res => {
+                return res.json();
+            }).catch(err => {
+                return err;
+            })
+            setUserData(user);
         });
         
         // Subscribe to chainId change
@@ -97,6 +103,7 @@ export const handleWeb3Connect = async (setIsConnected: React.Dispatch<boolean>,
         
         // Subscribe to provider disconnection
         provider.on("disconnect", (error: { code: number; message: string }) => {
+            localStorage.clear();
             setUserData(undefined);
             setIsConnected(false);
             setProvider(undefined);

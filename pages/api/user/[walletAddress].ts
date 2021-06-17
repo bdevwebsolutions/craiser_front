@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import mongoose from 'mongoose';
 import NextCors from 'nextjs-cors';
+import {userModel} from '../../../lib/models/user.model';
 
 //API CALL
 
@@ -11,36 +12,9 @@ import NextCors from 'nextjs-cors';
 
 */
 
-const projectSchema = new mongoose.Schema({
-    contractAddress: String,
-    title: String,
-    description: String,
-    links: [{type: String}],
-    upvotes: Number,
-})
 
-const userSchema = new mongoose.Schema({
-    walletAddress: {
-        type: String,
-        required: true,
-    },
-    projects: {
-        type: [projectSchema],
-        required: false,
-    },
-    upvotes: {
-        type: [{type: String}],
-        required: false,
-    },
-    following: {
-        type: [{type: String}],
-        required: false,
-    },
-    funding: {
-        type: [{type: String}],
-        required: false,
-    },
-})
+
+
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     await NextCors(req, res, {
@@ -59,16 +33,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         console.log(err);
     });
 
-    //get usermodel
-    let user = mongoose.model('User', userSchema);
-
     //check if user exists in database
-    let exists = await user.exists({walletAddress: walletAddress})
+    let exists = await userModel.exists({walletAddress: walletAddress})
 
     //If the user exists
     if(exists){
         //get userdata
-        let userData = await user.findOne({walletAddress: walletAddress}, (err, user) => {
+        let userData = await userModel.findOne({walletAddress: walletAddress}, (err, user) => {
             return user;
         })
 
@@ -82,7 +53,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     //if user doesn't exist
     else {
         //New user
-        const userDoc = new user({
+        const userDoc = new userModel({
             walletAddress: walletAddress,
         })
 

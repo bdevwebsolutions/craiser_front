@@ -7,9 +7,9 @@ import Link from 'next/link';
 export const Nav = () => {
     return (
     <List>
-        <ListItem><Link href="/hot">HOT</Link><Link href="/hot"><AiFillFire/></Link></ListItem>
-        <ListItem><Link href="/trending">TRENDING</Link><Link href="/trending"><AiFillRocket/></Link></ListItem>
-        <ListItem><Link href="/new">NEW</Link><Link href="/new"><BiPlusMedical/></Link></ListItem>
+        <ListItem><Link href="/hot">HOT</Link><Link href="/hot"><a><AiFillFire/></a></Link></ListItem>
+        <ListItem><Link href="/trending">TRENDING</Link><Link href="/trending"><a><AiFillRocket/></a></Link></ListItem>
+        <ListItem><Link href="/new">NEW</Link><Link href="/new"><a><BiPlusMedical/></a></Link></ListItem>
     </List>
     )
 }
