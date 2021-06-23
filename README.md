@@ -46,7 +46,3 @@
         -Some global styles and a typscript color object
 
         ---
-
-### Todo
-    - Routes
-    - Profile

@@ -5,12 +5,11 @@ import {colors} from './colors';
 export const Container = styled.div`
 
     width: auto;
-    height: auto;
+    height: 100%;
+    min-height: 100vh;
     background: ${colors.one} ;
     display: block;
     padding: 10px;
-    height: 100vh;
-    max-height: 100vh;
     padding: 15px;
 
     display: grid;

@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
         required: true,
     },
     projects: {
-        type: [projectSchema],
+        type: [{type: String}],
         required: false,
     },
     upvotes: {

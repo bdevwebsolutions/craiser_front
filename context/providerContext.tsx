@@ -12,7 +12,11 @@ export const ProviderContext = React.createContext<Partial<Props>>({});
 
 const ProviderProvider: React.FC<{children: React.ReactNode}> = ({children}) => {
 
-    const [provider, setProvider] = React.useState(undefined);
+    const [provider, setProvider] = React.useState<Web3>(undefined);
+
+    React.useEffect(() => {
+        console.log(provider);
+    }, [provider])
 
     return <ProviderContext.Provider value={{provider, setProvider}}>{children}</ProviderContext.Provider>
 

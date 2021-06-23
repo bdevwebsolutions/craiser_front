@@ -5,11 +5,14 @@ import {WalletLink} from 'walletlink';
 import {userObject} from '../context/userContext';
 
 import Web3 from 'web3';
-import Web3Modal from 'web3modal';
+import Web3Modal, { providers } from 'web3modal';
 import React from 'react';
 
 const INFURA_ID = "d200575c37fa451eb3bac352e8005496"
 
+
+//PROVIDER OPTIONS
+// Sets base options + custom walletlink provider
 const providerOptions = {
     walletconnect: {
         package: WalletConnectProvider,
@@ -60,6 +63,16 @@ export const handleWeb3Connect = async (setIsConnected: React.Dispatch<boolean>,
         console.warn(err);
     });
 
+    // TODO: VERIFY IF CONNECTED TO MAINNET - BREAK IF NOT
+    /*
+    let networkId = await provider.networkVersion;
+    if(networkId !== "1"){
+        setIsConnected(false)
+        window.alert('Your account should be connected to the main ethereum network. Disconnect the current account first before you can continue.')
+        return null;
+    }
+    */
+
     //If provider is succesfull set listeners and get initial data
     if(provider === undefined){
         return null;
@@ -79,6 +92,10 @@ export const handleWeb3Connect = async (setIsConnected: React.Dispatch<boolean>,
 
         //Set user data to context
         setUserData(user);
+
+        window.ethereum.on('disconnect', () => {
+            
+        })
 
         provider.on("accountsChanged", async (accounts: string[]) => {
             //Change userContext
@@ -103,6 +120,7 @@ export const handleWeb3Connect = async (setIsConnected: React.Dispatch<boolean>,
         
         // Subscribe to provider disconnection
         provider.on("disconnect", (error: { code: number; message: string }) => {
+            console.log("disconnect")
             localStorage.clear();
             setUserData(undefined);
             setIsConnected(false);

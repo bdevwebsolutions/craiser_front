@@ -4,7 +4,7 @@ const projectSchema = new mongoose.Schema({
     contractAddress: String,
     title: String,
     description: String,
-    links: [{type: String}],
+    organization: String,
     upvotes: Number,
 })
 

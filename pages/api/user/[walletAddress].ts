@@ -13,7 +13,7 @@ import {userModel} from '../../../lib/models/user.model';
 */
 
 
-
+// TODO: REFACTOR
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
@@ -25,7 +25,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     });
 
     //get walletAddress from query
-    const {walletAddress} = req.query; 
+    let {walletAddress} = req.query;
+    
+    //capitalize for consistency
+    //@ts-ignore
+    walletAddress = walletAddress.toUpperCase();
 
     //connect to database
     mongoose.connect('mongodb+srv://BDEVBjarne:Jackandjones2110@cluster0.owkkp.mongodb.net/public?retryWrites=true&w=majority',  {useNewUrlParser: true, useUnifiedTopology: true})

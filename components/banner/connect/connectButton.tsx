@@ -37,7 +37,7 @@ export const Connect: React.FC = () => {
     //TOOLTIP
     const tooltipRef = React.useRef(null);
     const [activateTooltip, setActivateTooltip] = React.useState(false);
-    const tooltip = useTooltip({description: "A true disconnection can only be aquired by disconnecting from your wallet application.", ref: tooltipRef.current, active: activateTooltip})
+    const tooltip = useTooltip({description: "A true disconnection can only be aquired by disconnecting from your wallet application and refreshing our DApp.", ref: tooltipRef.current, active: activateTooltip})
 
     return (
     <Container>
