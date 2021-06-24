@@ -1,8 +1,25 @@
 import React from 'react'
+
+//CONTEXT
 import { userObject } from '../../../../context/userContext'
-import { Details } from './controls/details';
-import { List } from './controls/list';
+
+//COMPONENTS
+import { Details } from './controls/details/details';
+import { List } from './controls/list/list';
+
+//STYLING
 import { Container } from './styles';
+
+
+/** 
+--- INDEX PAGE FOR THE PROJECT SUBROUTE OF PROFILE-----------------------
+
+    @param: data => userObject passed by parentcontext
+    * *LIST => List element that displays all projects a user ever started
+    * *DETAILS => Detailed information about a specific project
+
+-------------------------------------------------------------------
+*/
 
 
 const Projects: React.FC<{data: userObject}> = ({data}) => {

@@ -1,6 +1,6 @@
 // STYLES FOR THE BANNER
 import styled from 'styled-components';
-import {colors} from '../../styles/colors';
+import {colors, highlights} from '../../styles/colors';
 
 export const Container = styled.div`
 

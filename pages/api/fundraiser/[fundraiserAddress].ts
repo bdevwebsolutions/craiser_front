@@ -11,7 +11,7 @@ import {userModel} from '../../../lib/models/user.model';
 
     * Gets the current projects data if exists.
     * Otherwise create a basic project instance in the db.
-    * TODO: REFACTOR
+    * TODO: REFACTOR + .ENV FOR DB CONNECTION
 */
 
 

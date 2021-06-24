@@ -1,6 +1,6 @@
 // STYLES FOR THE REFBAR
 import styled from 'styled-components';
-import {colors} from '../../../styles/colors';
+import {colors, highlights} from '../../../styles/colors';
 
 export const Container = styled.div`
     display: grid;
@@ -36,6 +36,7 @@ export const Button = styled.button`
 
     :hover{
         border-radius: 0;
+        border: solid 2px ${highlights.seven};
     }
 `
 
@@ -54,6 +55,11 @@ export const Input = styled.input`
         color: white;
         font-weight: bold;
         font-size: 12px;
+    }
+
+    :focus{
+        outline: none;
+        border: solid 2px ${highlights.seven};
     }
 
 `

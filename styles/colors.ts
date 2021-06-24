@@ -1,5 +1,5 @@
-/*
-export const colors = {
+
+export const highlights = {
     one: "#10002bff",
     two: "#240046ff",
     three: "#3c096cff",
@@ -11,8 +11,8 @@ export const colors = {
 
     oneTransparant: "#10002bcc",
     twoTransparant: "#240046cc"
-*/
 
+}
 
 export const colors = {
     nine: "#f8f9faff",

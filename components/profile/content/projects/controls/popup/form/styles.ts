@@ -1,5 +1,5 @@
 import styled from "styled-components"
-import { colors } from "../../../../../../styles/colors"
+import { colors, highlights } from "../../../../../../../styles/colors"
 
 
 export const Form = styled.form`
@@ -32,11 +32,13 @@ export const Form = styled.form`
 
     span{
         font-size: 13px;
-        color: red;
+        color: ${highlights.seven};
     }
 
     input:focus{
         font-weight: bold;
+        outline: none;
+        border: solid 1px ${highlights.seven};
     }
 
     textarea{
@@ -44,5 +46,11 @@ export const Form = styled.form`
         min-width: 100%;
         height: 200px;
     }
+    textarea:focus{
+        font-weight: bold;
+        outline: none;
+        border: solid 1px ${highlights.seven};
+    }
+
 
 `

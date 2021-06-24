@@ -1,6 +1,7 @@
 import React from 'react'
 import {Approval, Contributers, DetailsContainer, Funds, Description, Time, Center} from './styles';
 
+// TODO GET CORRECT DATA FROM SMART CONTRACT
 
 export const Details: React.FC<{active: string}> = ({active}) => {
 

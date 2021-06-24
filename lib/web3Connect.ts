@@ -7,6 +7,19 @@ import {userObject} from '../context/userContext';
 import Web3 from 'web3';
 import Web3Modal, { providers } from 'web3modal';
 import React from 'react';
+import { Error } from 'mongoose';
+
+/** 
+--- WEB3 CONNECT FOR CONNECTING A WALLET TO THE DAPP -----------------------
+
+    * @param: Provider: web3 provider to get and deploy the contract
+    * @param: Data: userdata includes the users walletAddres
+    * @param:
+    * TODO UPDATE COMPLETELY - PROCESS.ENV
+
+-------------------------------------------------------------------
+*/
+
 
 const INFURA_ID = "d200575c37fa451eb3bac352e8005496"
 
@@ -60,7 +73,7 @@ export const handleWeb3Connect = async (setIsConnected: React.Dispatch<boolean>,
         return res;
     }).catch(err => {
         setIsConnected(false);
-        console.warn(err);
+        throw new Error('Cannot connect to the web3Modal')
     });
 
     // TODO: VERIFY IF CONNECTED TO MAINNET - BREAK IF NOT
@@ -73,59 +86,51 @@ export const handleWeb3Connect = async (setIsConnected: React.Dispatch<boolean>,
     }
     */
 
-    //If provider is succesfull set listeners and get initial data
-    if(provider === undefined){
-        return null;
-    } else {
-        const web3 = new Web3(provider);
-        setProvider(web3);
+    const web3 = new Web3(provider);
+    setProvider(web3);
 
-        //CONNECTION IS INITIATED, GET USER FROM DB BASED ON ADDRESS;
-        let accounts = await web3.eth.getAccounts();
-        
-        //api call to user
+    //CONNECTION IS INITIATED, GET USER FROM DB BASED ON ADDRESS;
+    let accounts = await web3.eth.getAccounts();
+    
+    //api call to user
+    let user = await fetch(`/api/user/${accounts[0]}`).then(res => {
+        return res.json();
+    }).catch(err => {
+        setIsConnected(false)
+        throw new Error('Could not fetch or create a user instance in the DB')
+    })
+
+    //Set user data to context
+    setUserData(user);
+
+
+    provider.on("accountsChanged", async (accounts: string[]) => {
+        //Change userContext
         let user = await fetch(`/api/user/${accounts[0]}`).then(res => {
             return res.json();
         }).catch(err => {
             return err;
         })
-
-        //Set user data to context
         setUserData(user);
+    });
+    
+    // Subscribe to chainId change
+    provider.on("chainChanged", (chainId: number) => {
+        
+    });
+    
+    // Subscribe to provider connection
+    provider.on("connect", (info: { chainId: number }) => {
 
-        window.ethereum.on('disconnect', () => {
-            
-        })
+    });
+    
+    // Subscribe to provider disconnection
+    provider.on("disconnect", (error: { code: number; message: string }) => {
+        localStorage.clear();
+        setUserData(undefined);
+        setIsConnected(false);
+        setProvider(undefined);
+    });
 
-        provider.on("accountsChanged", async (accounts: string[]) => {
-            //Change userContext
-            let user = await fetch(`/api/user/${accounts[0]}`).then(res => {
-                return res.json();
-            }).catch(err => {
-                return err;
-            })
-            setUserData(user);
-        });
-        
-        // Subscribe to chainId change
-        provider.on("chainChanged", (chainId: number) => {
-            console.log(chainId);
-        });
-        
-        // Subscribe to provider connection
-        provider.on("connect", (info: { chainId: number }) => {
-            console.log(info);
-            console.log('CONNdfezECT')
-        });
-        
-        // Subscribe to provider disconnection
-        provider.on("disconnect", (error: { code: number; message: string }) => {
-            console.log("disconnect")
-            localStorage.clear();
-            setUserData(undefined);
-            setIsConnected(false);
-            setProvider(undefined);
-        });
-    }
     
 }

@@ -1,7 +1,7 @@
 // STYLES FOR THE CONNECTIONBUTTON
 
 import styled from 'styled-components';
-import {colors} from '../../../styles/colors';
+import {colors, highlights} from '../../../styles/colors';
 
 export const ConnectionButton = styled.p`
     font-weight: bold;
@@ -20,24 +20,5 @@ export const Container = styled.div`
        font-size: 14px;
        height: 40px;
        line-height: 30px;
-    }
-`
-
-export const ConnectionType = styled.div`
-    *{
-        display: inline;
-    }
-
-
-    display: grid;
-    grid-template-columns: 1fr auto;
-    padding: 0px 15px;
-    background-color: ${colors.two};
-    border-radius: 5px;
-    margin-bottom: 10px;
-    cursor: pointer;
-
-    :hover {
-        background-color: ${colors.three};
     }
 `

@@ -22,5 +22,26 @@ a {
 }
 
 #nprogress .bar {
-  background: #f8f9faff !important;
+  background: #c77dffff !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #888;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #c77dffff;
+  height: 15px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

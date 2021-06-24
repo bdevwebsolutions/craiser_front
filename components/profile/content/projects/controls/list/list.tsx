@@ -1,18 +1,20 @@
 import React, { Dispatch } from 'react'
-import { ProviderContext } from '../../../../../context/providerContext';
-import { UserContext, userObject } from '../../../../../context/userContext';
-import { NewProjectPopup } from './popup';
-import {ListContainer, StyledPopup} from './styles';
+import { ProviderContext } from '../../../../../../context/providerContext';
+import { UserContext, userObject } from '../../../../../../context/userContext';
+import { NewProjectPopup } from '../popup/popup';
+import {ListContainer} from './styles';
+import {StyledPopup} from '../popup/styles';
 
 export const List: React.FC<{data: userObject, selectProject: Dispatch<string>}> = ({data, selectProject}) => {
     
     const [projectList, setProjectList] = React.useState([])
     const {provider} = React.useContext(ProviderContext);
     const {userData} = React.useContext(UserContext);
+
     React.useEffect(() => {
         if(data.projects !== undefined){
             let allProjects = data.projects.map(el => {
-                return <li onClick={() => {selectProject(el)}} key={el}>{el}</li>
+                return <li tabIndex={el} onClick={() => {selectProject(el)}} key={el}>{el}</li>
             })
             setProjectList(allProjects)
         }

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {colors} from '../../styles/colors';
+import {colors, highlights} from '../../styles/colors';
 
 export const Container = styled.div`
 
@@ -10,7 +10,7 @@ export const Container = styled.div`
 
     display: grid;
     grid-template-columns: 330px auto;
-    border-bottom: solid 2px ${colors.three};
+    border-bottom: solid 2px ${highlights.seven};
 
     @media only screen and (max-width: 850px){
         grid-template-columns: 1fr auto;
@@ -43,7 +43,7 @@ export const Profile = styled.p<{disabled: boolean}>`
             font-weight: ${props => props.disabled ? "normal" : "bold"};
 
             svg{
-                fill: ${props => props.disabled ? "grey" : colors.seven};
+                fill: ${props => props.disabled ? "grey" : highlights.seven};
             }
         }
     }
@@ -82,7 +82,7 @@ export const ListItem = styled.li`
         :hover{
             font-weight: bold;
             svg{
-                fill: ${colors.seven};
+                fill: ${highlights.seven};
             }
         }
         cursor: pointer;

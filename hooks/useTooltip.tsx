@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components';
-import { colors } from '../styles/colors';
+import { colors, highlights } from '../styles/colors';
 import {TooltipContext} from '../context/tooltipContext';
 
 type Props = {
@@ -84,6 +84,7 @@ const Tooltip = styled.div`
     text-align: left;
     box-shadow: 0 0 20px 2px ${colors.one};
     border-radius: 5px;
+    background-color: ${highlights.five};
 
     *{
         display: block;
@@ -97,7 +98,6 @@ const Tooltip = styled.div`
         font-weight: bold;
     }
 
-    background-color: ${colors.four};
 `
 
 const ToolTipTopLeft = styled(Tooltip)<{top: number, left: number}>`

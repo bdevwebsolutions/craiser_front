@@ -11,13 +11,13 @@ import Web3 from "web3"
 import { userObject } from "../../context/userContext"
 import FundraiserContract from '../../contracts/FundRaiser.json';
 
+//types
 export type FundraiserData = {
     name: string,
     description: string,
     organization: string,
     form: FormData
 }
-
 type FormData = {
     deadline: number, //ENDTIME IN NORMAL TIME - CONVERT TO SECONDS
     goal: number, //GOAL IN ETH - CONVERT TO WEI
@@ -25,16 +25,19 @@ type FormData = {
     initialPaymentDuration: number, //SET FIXED TO 0
 }
 
-const deployContract = async (provider: Web3, userData: userObject, fundraiserData: FundraiserData): Promise<boolean | userObject> => {
+const deployContract = async (provider: Web3, userData: userObject, fundraiserData: FundraiserData): Promise<userObject> => {
     
-    // ---- BLCOCKCHAIN DB ----- //
+    // ---- BLOCKCHAIN DB ----- //
     //GET GAS AND BLOCKTIME INFO FROM API
+    //THROW ERROR IF URL DOESN'T EXIST ANYMORE V
     let GASINFO = await fetch('https://ethgasstation.info/json/ethgasAPI.json')
         .then(async (res) => {
             let data = await res.json()
             return data;
         }
-    );
+    ).catch(err => {
+        throw new Error("An error occured while getting gas and block info");
+    })
 
     //CREATE A NEW CONTRACT INSTANCE
     //@ts-ignore
@@ -59,6 +62,9 @@ const deployContract = async (provider: Web3, userData: userObject, fundraiserDa
 
     //CALCULATE AMOUNT OF GAS NEEDED
     let GASAMOUNT = await CONTRACT_DEPLOY.estimateGas({}, (error, gasAmount) => {
+        if(error){
+            throw new Error('An error occured while estimating the gas cost')
+        }
         return gasAmount;
     })
 
@@ -69,7 +75,6 @@ const deployContract = async (provider: Web3, userData: userObject, fundraiserDa
         gasPrice: GASINFO.average.toString(),
     }).then(async (newContractInstance) => {
         //VERIFY CONTRACT
-        console.log(newContractInstance)
         console.log(`
             OWNER: ${await newContractInstance.methods.owner().call()},
             GOAL: ${await newContractInstance.methods.goal().call()},
@@ -79,28 +84,28 @@ const deployContract = async (provider: Web3, userData: userObject, fundraiserDa
         return newContractInstance;
     }).catch(err => {
         //CATCH ERRORS
-        window.alert(err);
-        return false;
+        throw new Error('An error occured while deploying your contract');
     });
+
+    //UPDATE DB
+    //@ts-ignore
+    let updatedUserData  = await updateDB(DEPLOYED_CONTRACT._address, fundraiserData.name, fundraiserData.description, fundraiserData.organization, userData.walletAddress).then(res => {
+        console.log(res)
+        return res;
+    }).catch(err => {
+        throw new Error('An error occured while updating our database')
+    })
+
+    return updatedUserData;
     
-    if(DEPLOYED_CONTRACT === false){
-        return false;
-    } else {
-        //@ts-ignore
-        let res  = await updateDB(DEPLOYED_CONTRACT._address, fundraiserData.name, fundraiserData.description, fundraiserData.organization, userData.walletAddress)
-        //Return new userData
-        if(res){
-            return res;
-        } else {
-            return false;
-        }
-    }
     
 }
 
 //UPDATES DATABASE AND RETURNS USERDATA OR FALSE
 const updateDB = async (contractAddress, title, description, organization, walletAddress) => {
+    
     let params = {contractAddress, contractTitle: title, contractDescription: description, contractOrganization: organization, walletAddress};
+    
     let data = await fetch(`/api/fundraiser/${contractAddress}`, {
         method: 'POST',
         mode: 'cors',
@@ -111,15 +116,10 @@ const updateDB = async (contractAddress, title, description, organization, walle
     }).then(res => {
         return res.json()
     }).catch(err => {
-        console.log(err)
+        throw new Error('An error occured while updating our database');
     })
 
-    if(data){
-        return data;
-    } else {
-        return false;
-    }
-
+    return data;
 
 }   
 

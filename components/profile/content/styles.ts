@@ -7,6 +7,11 @@ export const Container = styled.div`
     padding: 35px;
     grid-gap: 15px;
 
+    @media only screen and (max-width: 1100px){
+        padding: 0px !important;
+        margin-top: 15px;
+        grid-template-rows: auto 1fr;
+    }
 `
 
 export const TitleBar = styled.div`
@@ -23,11 +28,20 @@ export const TitleBar = styled.div`
     p{
         display: inline-block;
         width: 50%;
-        opacity: 0.6;
     }
 
     p:last-of-type{
         text-align: right;
         
+    }
+
+    @media only screen and (max-width: 1100px){
+        padding: 0px !important;
+       p{
+           display: block;
+           width: 100%;
+           text-align: left !important;
+
+       }
     }
 `

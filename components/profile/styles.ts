@@ -9,7 +9,7 @@ export const Container = styled.div`
     grid-template-columns: 70px 1fr;
     grid-template-rows: 1fr;
     grid-gap: 15px;
-
+    
     div:first-of-type{
         align-self: center;
     }

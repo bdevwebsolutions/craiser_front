@@ -5,15 +5,16 @@ import {userModel} from '../../../lib/models/user.model';
 
 //API CALL
 
-/*
+/** 
 
-    Gets the current users data if exists.
-    Otherwise create a basic user instance in the db.
+    * Gets the current users data if exists.
+    * Otherwise create a basic user instance in the db.
+    * TODO: REFACTOR + .ENV FOR DB CONNECTION
 
 */
 
 
-// TODO: REFACTOR
+
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 

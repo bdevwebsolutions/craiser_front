@@ -1,5 +1,6 @@
 // STYLES FOR THE LOGO
 import styled from 'styled-components';
+import { highlights } from '../../../styles/colors';
 
 export const Header = styled.h1`
     height: 60px;

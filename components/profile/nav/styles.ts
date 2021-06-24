@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { colors } from '../../../styles/colors';
+import { colors, highlights } from '../../../styles/colors';
 
 export const Container = styled.div`
 
@@ -22,7 +22,7 @@ export const Container = styled.div`
     @media only screen and (max-width: 1100px){
         width: 100%;
         height: auto;
-        background-color: ${colors.three};
+        background-color: ${colors.two};
 
         ul{
             flex-direction: row;
@@ -42,12 +42,12 @@ export const ListItem = styled.li<{active: boolean}>`
     cursor: pointer;
 
     svg{
-        fill: ${props => props.active ? "white" : colors.five};
+        fill: ${props => props.active ? highlights.seven : colors.three};
     }
 
     :hover{
         svg{
-            fill: white;
+            fill: ${highlights.seven};
         }
     }
 
