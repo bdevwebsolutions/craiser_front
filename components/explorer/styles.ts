@@ -9,7 +9,7 @@ export const Container = styled.div`
     padding: 0px 15px 0px 15px;
 
     display: grid;
-    grid-template-columns: 330px auto;
+    grid-template-columns: 85px auto;
     border-bottom: solid 2px ${highlights.seven};
 
     @media only screen and (max-width: 850px){
@@ -76,8 +76,9 @@ export const List = styled.ul`
 `
 
 export const ListItem = styled.li`
-    flex-grow: 1;
+    text-align: left;
     font-size: 13px;
+    padding-left: 18px;
 
         :hover{
             font-weight: bold;

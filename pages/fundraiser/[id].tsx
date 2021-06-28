@@ -5,7 +5,7 @@ import Banner from '../../components/banner';
 import Explorer from '../../components/explorer/explorer';
 import React from 'react';
 
-import {Container} from '../../styles/pageStyles'
+import {Bottom, Container} from '../../styles/pageStyles'
 import ToolBar from '../../components/toolbar';
 
 
@@ -22,7 +22,7 @@ export default function Home() {
         <ToolBar/>
         <Banner/>
         <Explorer/>
-        ref
+        <Bottom>___</Bottom>
       </Container>
     </>
   )

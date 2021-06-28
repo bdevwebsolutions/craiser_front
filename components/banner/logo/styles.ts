@@ -7,7 +7,7 @@ export const Header = styled.h1`
     font-weight: bold;
     letter-spacing: 0px;
     text-align: center;
-    cursor: pointer;
+    cursor: default;
 
     @media only screen and (max-width: 850px){
         text-align: left;

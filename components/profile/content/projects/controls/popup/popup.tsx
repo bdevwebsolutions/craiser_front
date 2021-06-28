@@ -45,6 +45,8 @@ export const NewProjectPopup: React.FC<{provider: Web3, data: userObject}> = ({p
     //FORM SUBMIT
     const onSubmit = async (formdata: FormData) => {
 
+        //TODO FIX THE INITIAL PAYEMENT DURATION
+
         //Format the formdata as FundraiserData
         let {name, description, organization, deadline, minimumContribution, goal} = formatFormData(formdata);
 

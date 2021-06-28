@@ -84,7 +84,7 @@ const Tooltip = styled.div`
     text-align: left;
     box-shadow: 0 0 20px 2px ${colors.one};
     border-radius: 5px;
-    background-color: ${highlights.five};
+    background-color: ${highlights.seven};
 
     *{
         display: block;

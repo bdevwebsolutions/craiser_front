@@ -5,6 +5,7 @@ export const New: React.FC<{onSubmit: Function}> = ({onSubmit}) => {
     return (
         <>
             <h4>NEW FUNDRAISER</h4>
+            <p>Read our info first before deploying a contract.</p>
             <ContractForm onSubmit={onSubmit}/>
         </>
     )
@@ -14,6 +15,7 @@ export const Ready: React.FC<{handleDeployment: React.MouseEventHandler<HTMLButt
     return (
         <>
             <h4>CONTRACT READY TO BE DEPLOYED</h4>
+            <p>Remember that our contract implements a 1% dev fee.</p>
             <button onClick={handleDeployment}>DEPLOY CONTRACT</button>
         </>
     )

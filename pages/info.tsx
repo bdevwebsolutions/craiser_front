@@ -5,13 +5,15 @@ import Banner from '../components/banner';
 import Explorer from '../components/explorer/explorer';
 import React from 'react';
 
-//styled-components
-import {Container} from '../styles/pageStyles'
-import ToolBar from '../components/toolbar';
- 
-export default function Trending() {
+import InfoContent from '../components/info';
 
-  //DISABLE ROUTE WHEN NOT LOGGED IN
+import {Bottom, Container} from '../styles/pageStyles'
+import ToolBar from '../components/toolbar';
+
+//TODO ADD DEV WALLET TO AUTO PAY 2% FUNDRAISER FEE
+
+
+export default function Home() {
 
   return (
     <>
@@ -24,11 +26,9 @@ export default function Trending() {
         <ToolBar/>
         <Banner/>
         <Explorer/>
-        TRENDING
+        <InfoContent/>
+        <Bottom>___</Bottom>
       </Container>
     </>
   )
 }
-
-
-

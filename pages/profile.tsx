@@ -15,7 +15,7 @@ import ProfileRouterProvider from '../context/component/profileRouterContext';
 
 
 //styled-components
-import {Container} from '../styles/pageStyles'
+import {Bottom, Container} from '../styles/pageStyles'
 import ToolBar from '../components/toolbar';
 import { UserContext } from '../context/userContext';
 
@@ -53,6 +53,7 @@ const Profile = () => {
         <ProfileRouterProvider>
           <ProfileContainer userData={{...userData}} />
         </ProfileRouterProvider>
+        <Bottom>___</Bottom>
       </Container>
     </>
   )

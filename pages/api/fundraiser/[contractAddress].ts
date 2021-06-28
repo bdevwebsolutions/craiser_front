@@ -26,9 +26,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
     });
 
-    //Get data from body    
-    let {contractAddress, contractTitle, contractDescription, contractOrganization, walletAddress} = req.body;
-    console.log(walletAddress)
+    //Get data from body and query
+    let {contractAddress} = req.query;
+    let {contractTitle, contractDescription, contractOrganization, walletAddress, contractGoal} = req.body;
     
     //capitalize for consistency
     //@ts-ignore
@@ -69,6 +69,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             description: contractDescription,
             organization: contractOrganization,
             upvotes: 0,
+            goal: contractGoal,
+            donated: 0,
         })
 
         //Save project

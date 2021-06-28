@@ -7,5 +7,5 @@ import React from 'react'
 //Styled components
 import {Header} from './styles';
 
-export const Logo: React.FC = () => <Header><Link href="/">CRAISER_.</Link></Header>
+export const Logo: React.FC = () => <Header>CRAISER_.</Header>
 

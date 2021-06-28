@@ -89,7 +89,7 @@ const deployContract = async (provider: Web3, userData: userObject, fundraiserDa
 
     //UPDATE DB
     //@ts-ignore
-    let updatedUserData  = await updateDB(DEPLOYED_CONTRACT._address, fundraiserData.name, fundraiserData.description, fundraiserData.organization, userData.walletAddress).then(res => {
+    let updatedUserData  = await updateDB(DEPLOYED_CONTRACT._address, fundraiserData.name, fundraiserData.description, fundraiserData.organization, userData.walletAddress, fundraiserData.form.goal).then(res => {
         console.log(res)
         return res;
     }).catch(err => {
@@ -102,9 +102,9 @@ const deployContract = async (provider: Web3, userData: userObject, fundraiserDa
 }
 
 //UPDATES DATABASE AND RETURNS USERDATA OR FALSE
-const updateDB = async (contractAddress, title, description, organization, walletAddress) => {
+const updateDB = async (contractAddress, title, description, organization, walletAddress, goal) => {
     
-    let params = {contractAddress, contractTitle: title, contractDescription: description, contractOrganization: organization, walletAddress};
+    let params = {contractAddress, contractTitle: title, contractDescription: description, contractOrganization: organization, walletAddress, contractGoal: goal};
     
     let data = await fetch(`/api/fundraiser/${contractAddress}`, {
         method: 'POST',

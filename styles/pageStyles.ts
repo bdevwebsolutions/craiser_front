@@ -1,11 +1,18 @@
 import styled from 'styled-components';
-import {colors} from './colors';
+import {colors, highlights} from './colors';
+
+//BOTTOM
+export const Bottom = styled.div`
+    text-align: center;
+    background-color: ${colors.one};
+    color: ${highlights.seven};
+`
 
 //MAIN
 export const Container = styled.div`
 
     width: auto;
-    height: 100%;
+    height: auto;
     min-height: 100vh;
     background: ${colors.one} ;
     display: block;
@@ -45,6 +52,10 @@ export const Warning = styled.div`
         :hover{
             font-weight: bold;
         }
+    }
+
+    h1{
+        color: ${highlights.seven};
     }
     
 `
