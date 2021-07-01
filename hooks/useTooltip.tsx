@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { colors, highlights } from '../styles/colors';
-import {TooltipContext} from '../context/tooltipContext';
+import {TooltipContext} from '../context/global/tooltipContext';
 
 type Props = {
     description: string,

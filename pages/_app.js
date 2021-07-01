@@ -3,6 +3,7 @@ import NProgress from 'nprogress';
 import {Router} from 'next/router';
 import "nprogress/nprogress.css";
 
+
 NProgress.configure({
   minimum: 0.5,
   showSpinner: false,
@@ -15,10 +16,10 @@ Router.events.on('routeChangeComplete', () => {NProgress.done()})
 Router.events.on('routeChangeError', () => {NProgress.done()})
 
 //CONNECTIONSTATE
-import ConnectionProvider from '../context/connectionContext';
-import ProviderProvider from '../context/providerContext';
-import ToolTipProvider from '../context/tooltipContext';
-import UserProvider from '../context/userContext';
+import ConnectionProvider from '../context/global/connectionContext';
+import ProviderProvider from '../context/global/providerContext';
+import ToolTipProvider from '../context/global/tooltipContext';
+import UserProvider from '../context/global/userContext';
 
 function MyApp({ Component, pageProps }) {
   return (

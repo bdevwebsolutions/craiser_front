@@ -11,7 +11,7 @@ import {userModel} from '../../../lib/models/user.model';
 
     * Gets the current projects data if exists.
     * Otherwise create a basic project instance in the db.
-    * TODO: REFACTOR + .ENV FOR DB CONNECTION
+    * TODO: REFACTOR 
 */
 
 
@@ -35,7 +35,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     contractAddress = contractAddress.toUpperCase();
 
     //connect to database
-    mongoose.connect('mongodb+srv://BDEVBjarne:Jackandjones2110@cluster0.owkkp.mongodb.net/public?retryWrites=true&w=majority',  {useNewUrlParser: true, useUnifiedTopology: true})
+    mongoose.connect(process.env.MONGO_DB_KEY,  {useNewUrlParser: true, useUnifiedTopology: true})
     .catch(err => {
         console.log(err);
     });
@@ -96,5 +96,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     
 }
+
 
 export default handler;

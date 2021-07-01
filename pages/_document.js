@@ -23,6 +23,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <meta charSet="utf-8" />
           {/* Step 5: Output the styles in the head  */}
           {this.props.styleTags}
         </Head>

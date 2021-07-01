@@ -2,7 +2,7 @@
 import WalletConnectProvider from '@walletconnect/web3-provider';
 import {WalletLink} from 'walletlink';
 
-import {userObject} from '../context/userContext';
+import {userObject} from '../context/global/userContext';
 
 import Web3 from 'web3';
 import Web3Modal, { providers } from 'web3modal';
