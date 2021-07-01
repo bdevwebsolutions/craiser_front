@@ -14,7 +14,7 @@ import { DashboardHome } from '../../components/pages/dashboard/content/home';
 
 
  
-const Profile = () => {
+const Profile: React.FC = () => {
 
   const {userData} = React.useContext(UserContext);
 
