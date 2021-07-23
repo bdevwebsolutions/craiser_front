@@ -6,8 +6,6 @@ export const Container = styled.div`
     width: 100%;
     height: auto;
     padding: 15px;
-    background: linear-gradient(0deg, ${colors.two} 0%, ${colors.one} 100%) ;
-
     ul{
         display: row;
         flex-direction: row;

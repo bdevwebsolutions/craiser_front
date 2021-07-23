@@ -2,7 +2,6 @@ import Head from 'next/head'
 
 //Logical components
 import Banner from '../components/global/banner';
-import Explorer from '../components/global/explorer';
 import React from 'react';
 
 import {Bottom, Container} from '../styles/pageStyles'
