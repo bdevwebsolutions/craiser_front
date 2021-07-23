@@ -23,7 +23,6 @@ export const List: React.FC<{data: userObject, selectProject: Dispatch<string>}>
     
     return (
         <ListContainer>
-            {projectList.length <= 0 ? <p>you have no active projects</p> : <ul>{projectList}</ul>}
             <StyledPopup
                 trigger={<button> CREATE NEW </button>}
                 modal
@@ -31,6 +30,7 @@ export const List: React.FC<{data: userObject, selectProject: Dispatch<string>}>
                 >
                 <NewProjectPopup data={userData} provider={provider}/>
             </StyledPopup>
+            {projectList.length <= 0 ? <p>you have no active projects</p> : <ul>{projectList}</ul>}
         </ListContainer>
     )
 }

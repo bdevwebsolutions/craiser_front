@@ -8,7 +8,6 @@
 import React from 'react'
 import Banner from './banner';
 import Toolbar from './toolbar';
-import Explorer from './explorer';
 import Head from 'next/head';
 
 
@@ -19,7 +18,6 @@ const Header = () => {
     <>
         <Toolbar/>
         <Banner/>
-        <Explorer/>
     </>
     )
 }

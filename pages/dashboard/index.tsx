@@ -1,9 +1,6 @@
 import React from 'react';
 import { Header, HtmlHead } from '../../components/global';
 
-
-
-
 //styled-components
 import {Bottom, Container} from '../../styles/pageStyles'
 import { UserContext } from '../../context/global/userContext';

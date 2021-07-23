@@ -20,7 +20,7 @@ export const Container = styled.div`
     padding: 15px;
 
     display: grid;
-    grid-template-rows: auto auto 1fr;
+    grid-template-rows: auto 1fr;
     grid-gap: 15px;
 `
 

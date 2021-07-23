@@ -14,7 +14,7 @@ const InfoContent: React.FC = () => {
             <h3>WHAT IS CRAISER_.</h3>
             <p>
                 <span>Craiser_.</span> is a web3 based fundraising platform that integrates a fundraiser 
-                <span>smart contract</span> on the <span> Ethereum Blockchain </span>
+                <span> <Link href="/about/contract">smart contract</Link></span> on the <span> Ethereum Blockchain </span>
                 . This way we can deliver a <span>decentralized</span> way for you to 
                 create and maintain fundraiser projects with <span>community engagement</span>.
                

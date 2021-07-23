@@ -4,5 +4,5 @@ import {Container} from './styles';
 
 
 export const DashboardHome = () =>{
-    return <Container>SELECT A SUB</Container>
+    return <Container>VIEW YOUR PROJECTS AND THE PROJECTS YOU ARE FUNDING</Container>
 }

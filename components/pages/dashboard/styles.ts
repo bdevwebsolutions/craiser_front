@@ -6,6 +6,7 @@ export const DashboardContainer = styled.div`
     height: 100%;
     padding: 5px;
     display: grid;
+    grid-gap: 15px;
     grid-template-columns: 200px 1fr;
     grid-template-rows: 1fr;
     

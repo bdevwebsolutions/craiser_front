@@ -4,6 +4,7 @@ import { colors, highlights } from "../../../../../../../../../styles/colors"
 
 export const Form = styled.form`
 
+
     input,label,textarea{
         display: block;
         width: 100%;

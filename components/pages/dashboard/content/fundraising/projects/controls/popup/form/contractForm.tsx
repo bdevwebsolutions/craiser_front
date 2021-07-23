@@ -2,6 +2,7 @@ import React from 'react'
 import { useForm } from 'react-hook-form';
 import {formatDate} from '../../../../../../../../../util/dateFormat';
 import {Form} from './styles';
+import Tiptap from '../wysiwyg';
 /** 
 --- FUNDRAISER CONTRACT FORM -----------------------
 
@@ -32,11 +33,8 @@ export const ContractForm = ({onSubmit}) => {
             <input {...register('organization', {required: true})}/>
             {errors.organization && <span>This field is required</span>}
 
-            <label>Project Description - {length} characters</label>
-            {/*@ts-ignore*/}
-            <textarea onInput={(e) => {setLength(e.target.value.length)}} {...register('description', {required: true, minLength: 100})}/>
-            {errors.description && <span>This field is required and should be longer than 100 characters</span>}
-        
+            <label>Project Description</label>
+            <Tiptap/>
             <label>Deadline - minimum of 7 days</label>
             <input type="date" {...register('date', {min: formatDate(NEXT_WEEK.toDateString())})}/>
             {errors.date && <span>A deadline can only be in the future and has to be atleast longer than one week</span>}

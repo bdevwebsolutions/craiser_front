@@ -26,7 +26,7 @@ export const Refbar: React.FC = () => {
 
     const routeByReference = () => {
         if(id !== ""){
-            router.push(`/fundraiser/${encodeURIComponent(id)}`)
+            router.push(`/project/${encodeURIComponent(id)}`)
         }
     }
 

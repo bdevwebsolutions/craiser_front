@@ -5,7 +5,8 @@ import Popup from 'reactjs-popup';
 export const ListContainer = styled.div`
     
     display: grid;
-    grid-template-rows: 1fr 40px;
+    grid-template-rows: 40px 1fr;
+    grid-gap: 5px;
     height: 100%;
     
     

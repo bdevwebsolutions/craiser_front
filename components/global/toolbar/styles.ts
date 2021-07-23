@@ -6,7 +6,7 @@ export const Container = styled.div`
 
     height: 20px;
     width: 50px;
-    background-color: ${colors.one};
+    background-color: none;
     font-size: 18px;
     text-align: right;
     padding: 0px 15px;

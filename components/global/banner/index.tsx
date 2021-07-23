@@ -12,12 +12,14 @@ import { Logo } from './logo/logo';
 import { Refbar } from "./refbar/refbar";
 import { Connect } from './connect/connectButton';
 import { Container } from './styles';
+import Explorer from './nav';
 
 const Banner: React.FC = () => {
     return (
         <Container>
             <Logo/>
             <Refbar/>
+            <Explorer/>
             <Connect/>
         </Container>
     )

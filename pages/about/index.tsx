@@ -2,13 +2,12 @@ import Head from 'next/head'
 
 //Logical components
 import Banner from '../../components/global/banner';
-import Explorer from '../../components/global/explorer';
 import React from 'react';
 
 import InfoContent from '../../components/pages/about';
 
 import {Bottom, Container} from '../../styles/pageStyles'
-import ToolBar from '../../components/global/toolbar';
+import { Header } from '../../components/global';
 
 //TODO ADD DEV WALLET TO AUTO PAY 2% FUNDRAISER FEE
 
@@ -23,9 +22,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Container>
-        <ToolBar/>
-        <Banner/>
-        <Explorer/>
+        <Header/>
         <InfoContent/>
         <Bottom>___</Bottom>
       </Container>

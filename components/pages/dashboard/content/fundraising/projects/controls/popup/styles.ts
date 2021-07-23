@@ -11,6 +11,7 @@ export const StyledPopup = styled(Popup)`
     }
     // use your custom style for ".popup-content"
     &-content {
+        z-index: 99;
         cursor: default;
         background-color: ${colors.two};
         padding: 15px;

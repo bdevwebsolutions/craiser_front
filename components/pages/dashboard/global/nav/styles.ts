@@ -4,9 +4,9 @@ import { colors, highlights } from '../../../../../styles/colors';
 export const Container = styled.div`
 
     width: 100%;
-    height: 100%;
-    border-right: solid 1px ${highlights.seven};
-    padding: 10px;
+    height: auto;
+    padding: 15px;
+    background: linear-gradient(0deg, ${colors.two} 0%, ${colors.one} 100%) ;
 
     ul{
         display: row;
@@ -16,8 +16,6 @@ export const Container = styled.div`
         text-align: left;
         align-content: space-around;
         height: auto;
-
-
 
     }
 
@@ -43,14 +41,16 @@ export const ListItem = styled.li<{active: boolean}>`
     display: block;
     height: auto;
     width: 100%;
-    font-size: 11px;
+    font-size: 14px;
     cursor: pointer;
-    padding-left: 15px;
+    padding: 5px 15px 5px 15px;
     text-transform: uppercase;
+    border-left: solid 2px ${colors.three};
+    margin-bottom: 25px;
 
 
     color: ${props => props.active ? highlights.seven : colors.seven};
-
+    font-weight: ${props => props.active ? "bold" : "normal"};
 
     :hover{
         color: ${highlights.seven};
