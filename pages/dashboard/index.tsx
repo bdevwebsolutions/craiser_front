@@ -1,19 +1,19 @@
 import React from 'react';
-import { Header, HtmlHead } from '../../components/global';
+import HtmlHead from '../../components/global/htmlHead';
 
 //styled-components
 import {Bottom, Container} from '../../styles/pageStyles'
 import { UserContext } from '../../context/global/userContext';
 import WithConnection from '../../components/hoc/WithConnection';
-import { DashboardContainer } from '../../components/pages/dashboard/styles';
+import { DashboardContainer } from '../../components/global/dashboard/styles';
 import { Nav } from '../../components/pages/dashboard/global/nav';
 import { DashboardHome } from '../../components/pages/dashboard/content/home';
+import Header from '../../components/global/header';
+import Dashboard from '../../components/pages/dashboard';
 
 
  
 const Profile: React.FC = () => {
-
-  const {userData} = React.useContext(UserContext);
 
   return (
     <>
@@ -22,7 +22,7 @@ const Profile: React.FC = () => {
         <Header/>
         <DashboardContainer>
           <Nav/>
-          <DashboardHome/>
+          <Dashboard/>
         </DashboardContainer>
         <Bottom>___</Bottom>
       </Container>

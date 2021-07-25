@@ -3,11 +3,11 @@ import Head from 'next/head'
 //Logical components
 import React from 'react';
 
-import InfoContent from '../../components/pages/about';
+import ContractInfo from '../../components/pages/about/contractInfo';
 
 import {Bottom, Container} from '../../styles/pageStyles'
 
-import { Header } from '../../components/global';
+import Header from '../../components/global/header';
 
 //TODO ADD DEV WALLET TO AUTO PAY 2% FUNDRAISER FEE
 
@@ -23,7 +23,7 @@ export default function Home() {
       </Head>
       <Container>
         <Header/>
-        CONTRACT INFO
+        <ContractInfo/>
         <Bottom>___</Bottom>
       </Container>
     </>

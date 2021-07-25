@@ -1,13 +1,12 @@
 import Head from 'next/head'
 
 //Logical components
-import Banner from '../../components/global/banner';
 import React from 'react';
 
-import InfoContent from '../../components/pages/about';
+import InfoContent from '../../components/pages/about/craiserInfo';
 
 import {Bottom, Container} from '../../styles/pageStyles'
-import { Header } from '../../components/global';
+import Header from '../../components/global/header';
 
 //TODO ADD DEV WALLET TO AUTO PAY 2% FUNDRAISER FEE
 

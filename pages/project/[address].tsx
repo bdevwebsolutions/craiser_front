@@ -4,11 +4,11 @@ import Head from 'next/head'
 import React from 'react';
 
 import {Bottom, Container} from '../../styles/pageStyles'
-import ToolBar from '../../components/global/toolbar';
 import { GetStaticPropsContext } from 'next';
-import { Header, HtmlHead } from '../../components/global';
+import HtmlHead from '../../components/global/htmlHead';
 import { FundraiserPage } from '../../components/pages/fundraiser';
 import { useRouter } from 'next/router';
+import Header from '../../components/global/header';
 
 //TODO ERRO HANDLING AND LOADING...
 

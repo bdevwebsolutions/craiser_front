@@ -1,4 +1,4 @@
-import { HtmlHead } from '../components/global';
+import HtmlHead from '../components/global/htmlHead';
 import Link from 'next/link';
 import React from 'react';
 
