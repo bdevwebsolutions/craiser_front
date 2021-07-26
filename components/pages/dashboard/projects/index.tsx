@@ -21,13 +21,7 @@ const Projects: React.FC<{data: userObject}> = ({data}) => {
     const [projectList, setProjectList] = React.useState([])
     const {provider} = React.useContext(ProviderContext);
     const {userData} = React.useContext(UserContext);
-    const [mobile, setMobile] = React.useState(() => {
-        if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-            return false;
-        } else {
-            return true;
-        }
-    })
+    const [mobile, setMobile] = React.useState(false)
 
     React.useEffect(() => {
         if(data.projects !== undefined){
@@ -37,6 +31,10 @@ const Projects: React.FC<{data: userObject}> = ({data}) => {
             setProjectList(allProjects)
         }
     }, [userData])
+
+    React.useEffect(() => {
+        window && window.innerWidth > 700 ? setMobile(true) : setMobile(false);
+    }, [])
 
 
     return (
