@@ -1,7 +1,6 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import {formatDate} from '../../../../../../util/dateFormat';
-import Tiptap from '../wysiwyg';
 import styled from "styled-components"
 import { colors, highlights } from "../../../../../../styles/colors"
 /** 
@@ -34,11 +33,14 @@ export const ContractForm = ({onSubmit}) => {
             <input {...register('organization', {required: true})}/>
             {errors.organization && <span>This field is required</span>}
 
-            <label>Project Description</label>
-            <Tiptap/>
+            <label>Project Description {length} (min 50 - max 250). This should be a short description that can be expanded on on your own social media or site</label>
+            {/* @ts-ignore */}
+            <textarea {...register('desc', {minLength: 50, maxLength: 250, required: true})} onChange={ e => {setLength(e.target.value.length)}}></textarea>
+            {errors.desc && <span>The description has to be within a 50 - 250 character limit</span>}
+
             <label>Deadline - minimum of 7 days</label>
-            <input type="date" {...register('date', {min: formatDate(NEXT_WEEK.toDateString())})}/>
-            {errors.date && <span>A deadline can only be in the future and has to be atleast longer than one week</span>}
+            <input type="date" {...register('date', {min: formatDate(NEXT_WEEK.toDateString()), required: true})}  defaultValue={formatDate(TODAY.getTime())}/>
+            {errors.date && <span>A deadline can only be in the future and has to be run atleast longer than one week</span>}
 
             <label>Goal - In ETH</label>
             <input type="number" step="any" {...register('goal', {min: 0.000000001, required: true})}/>

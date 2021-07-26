@@ -1,6 +1,6 @@
 import Popup from "reactjs-popup";
 import styled from "styled-components";
-import { colors, highlights } from "../../../../../../../../../styles/colors";
+import { colors, highlights } from "../../../styles/colors";
 export const StyledPopup = styled(Popup)`
 
     // use your custom style for ".popup-overlay"

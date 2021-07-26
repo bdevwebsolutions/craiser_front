@@ -60,9 +60,8 @@ const ListItem = styled.li<{active: boolean}>`
     width: 100%;
     font-size: 14px;
     cursor: pointer;
-    padding: 5px 15px 5px 15px;
+    padding: 5px 15px 5px 0px;
     text-transform: uppercase;
-    border-left: solid 2px ${colors.three};
     margin-bottom: 25px;
 
 

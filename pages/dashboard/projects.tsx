@@ -8,11 +8,11 @@ import { Bottom, Container } from '../../styles/pageStyles';
 import Header from '../../components/global/header';
 
 import Projects from '../../components/pages/dashboard/projects';
+import { ProviderContext } from '../../context/global/providerContext';
 
 
 const MyProject: React.FC = () => {
 
-    const {userData} = React.useContext(UserContext);
 
     return (
         <>
@@ -21,7 +21,7 @@ const MyProject: React.FC = () => {
                 <Header/>
                 <DashboardContainer>
                     <Nav/>
-                    <Projects data={{...userData}}/>
+                    <Projects/>
                 </DashboardContainer>
                 <Bottom>___</Bottom>
             </Container>
