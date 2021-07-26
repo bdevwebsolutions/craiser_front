@@ -9,11 +9,10 @@
 import React from 'react'
 import { ProviderContext } from '../../../../context/global/providerContext';
 import { UserContext, userObject } from '../../../../context/global/userContext';
-
-import styled from 'styled-components';
-import { TextContainer, TitleContainer, H2 } from '../../../global/markup';
+import { TitleContainer, H2 } from '../../../global/markup';
 import { StyledPopup } from './newProjectPopup/styles';
 import { NewProjectPopup } from './newProjectPopup/popup';
+import { DashboardContent } from '../../../global/dashboard/styles';
 
 
 
@@ -34,7 +33,7 @@ const Projects: React.FC<{data: userObject}> = ({data}) => {
 
 
     return (
-        <TextContainer>
+        <DashboardContent>
             <TitleContainer>
                 <H2>PROJECTS</H2>
             </TitleContainer>
@@ -52,7 +51,7 @@ const Projects: React.FC<{data: userObject}> = ({data}) => {
                 >
                 <NewProjectPopup data={userData} provider={provider}/>
             </StyledPopup>
-        </TextContainer>
+        </DashboardContent>
     )
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
-import { H2, TextContainer, TitleContainer } from '../../global/markup';
+import { H2, TitleContainer } from '../../global/markup';
+import { DashboardContent } from "../../global/dashboard/styles";
 
 
 
@@ -7,12 +8,15 @@ const Dashboard: React.FC = () => {
 
 
     return (
-        <TextContainer>
+        <DashboardContent>
             <TitleContainer>
                 <H2>DASHBOARD</H2>
             </TitleContainer>
-        </TextContainer>    
+        </DashboardContent>    
     )
 }
+
+
+
 
 export default Dashboard;

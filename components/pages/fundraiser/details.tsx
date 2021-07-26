@@ -1,40 +1,42 @@
 import React from 'react'
-import { contractData } from '../../../../pages/project/[address]'
-import { Container, DetailsContainer } from './styles'
+import { contractData } from '../../../pages/project/[address]'
+import { TextContainer, Paragraph, H3, H4, TitleContainer } from '../../global/markup'
 
 //TODO FUNDED AND DEADLINE FROM CONTRACT INTERACTION
 
 
 export const Details: React.FC<{data: contractData}> = ({data}) => {
     return (
-        <Container>
-            <h3>Fundraiser Details</h3>
-            <DetailsContainer>
+        <TextContainer>
+            <TitleContainer>
+                <H3>Fundraiser Details</H3>
+            </TitleContainer>
+            <Paragraph>
                 <div>
-                    <h4>Name</h4>
+                    <H4>Name</H4>
                     <p>{data && data.title}</p>
                 </div>
                 <div>
-                    <h4>Organization</h4>
+                    <H4>Organization</H4>
                     <p>{data && data.organization}</p>
                 </div>
                 <div>
-                    <h4>Description</h4>
+                    <H4>Description</H4>
                     <p>{data && data.description}</p>
                 </div>
                 <div>
-                    <h4>Goal</h4>
+                    <H4>Goal</H4>
                     <p>{data && data.goal} ETH</p>
                 </div>
                 <div>
-                    <h4>Funded</h4>
+                    <H4>Funded</H4>
                     <p>{data && data.donated} ETH</p>
                 </div>
                 <div>
-                    <h4>Deadline</h4>
+                    <H4>Deadline</H4>
                     <p>153184 seconds</p>
                 </div>
-            </DetailsContainer>
-        </Container>
+            </Paragraph>
+        </TextContainer>
     )
 }

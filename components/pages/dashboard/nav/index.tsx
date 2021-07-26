@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 import styled from 'styled-components';
-import { colors, highlights } from '../../../../../styles/colors';
+import { colors, highlights } from '../../../../styles/colors';
 
 const ROUTES = [
     "/dashboard/projects",
@@ -17,7 +17,7 @@ export const Nav: React.FC = () => {
     return (
     <Container>
         <ul>
-            <ListItem active={route.pathname === ROUTES[0] ? true : false}><Link href={ROUTES[0]}>My Projects</Link></ListItem>
+            <ListItem active={route.pathname === ROUTES[0] ? true : false}><Link href={ROUTES[0]}>Projects</Link></ListItem>
             <ListItem active={route.pathname === ROUTES[1] ? true : false}><Link href={ROUTES[1]}>Funding</Link></ListItem>
         </ul>
     </Container>
@@ -43,15 +43,10 @@ const Container = styled.div`
 
 
 
-    @media only screen and (max-width: 1100px){
-        width: 100%;
-        height: auto;
-        background-color: ${colors.two};
-
+    @media only screen and (max-width: 1050px){
         ul{
-            flex-direction: row;
-            justify-content: space-around;
-            line-height: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
         }
     }
 
@@ -80,8 +75,11 @@ const ListItem = styled.li<{active: boolean}>`
 
 
     @media only screen and (max-width: 1100px){
-        height: 50px;
-        line-height: 50px;
+        height: 30px;
+        margin-bottom: 0px;
+        border-left: none;
+        text-align: center;
+        font-weight: bold;
     }
     
 

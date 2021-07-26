@@ -1,7 +1,7 @@
 import React from 'react'
 import { contractData } from '../../../pages/project/[address]';
 import { Details } from './details';
-import { Container } from './styles';
+import styled from 'styled-components';
 
 
 export const FundraiserPage: React.FC<{data: contractData}> = ({data}) => {
@@ -15,3 +15,14 @@ export const FundraiserPage: React.FC<{data: contractData}> = ({data}) => {
     
     )
 }
+
+
+
+
+const Container = styled.div`
+
+    width: 100%;
+    max-width: 1200px;
+    margin: 0px auto;
+
+`
