@@ -21,6 +21,13 @@ const Projects: React.FC<{data: userObject}> = ({data}) => {
     const [projectList, setProjectList] = React.useState([])
     const {provider} = React.useContext(ProviderContext);
     const {userData} = React.useContext(UserContext);
+    const [mobile, setMobile] = React.useState(() => {
+        if( /Android|webOS|iPhone|iPad|Mac|Macintosh|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
+            return false;
+        } else {
+            return true;
+        }
+    })
 
     React.useEffect(() => {
         if(data.projects !== undefined){
@@ -44,13 +51,16 @@ const Projects: React.FC<{data: userObject}> = ({data}) => {
                     </ul>
                 : null
             }
-            <StyledPopup
-                trigger={<button> CREATE NEW </button>}
-                modal
-                closeOnDocumentClick
-                >
-                <NewProjectPopup data={userData} provider={provider}/>
-            </StyledPopup>
+            { mobile ? (
+                <StyledPopup
+                    trigger={<button> CREATE NEW </button>}
+                    modal
+                    closeOnDocumentClick
+                    >
+                    <NewProjectPopup data={userData} provider={provider}/>
+                </StyledPopup>
+                ) : null
+            }
         </DashboardContent>
     )
 }

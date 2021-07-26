@@ -172,7 +172,8 @@ const MenuButton = styled.button`
 const MenuBarContainer = styled.div`
     max-height: 80px !important;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    flex-wrap: wrap;
     padding: 0px !important;
     border-bottom: solid 1px ${colors.three};
 `

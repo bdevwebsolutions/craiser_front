@@ -8,6 +8,7 @@ export const StyledPopup = styled(Popup)`
     &-overlay {
         background-color: ${colors.oneTransparant};
         cursor: pointer;
+        overflow-y: scroll;
     }
     // use your custom style for ".popup-content"
     &-content {
