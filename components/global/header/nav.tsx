@@ -16,7 +16,7 @@ const Explorer = () => {
     return (
         <Container>
             <Link href="/about"><ListItem disabled={false}><FaQuestion/></ListItem></Link>   
-            <Link href={isConnected ? "/dashboard" : router.route}><ListItem disabled={!isConnected}><FaUserAlt/></ListItem></Link>
+            <Link href={isConnected ? "/dashboard/projects" : router.route}><ListItem disabled={!isConnected}><FaUserAlt/></ListItem></Link>
         </Container>
     )
 }

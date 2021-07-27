@@ -20,9 +20,8 @@ export type FundraiserData = {
 }
 type FormData = {
     deadline: number, //ENDTIME IN NORMAL TIME - CONVERT TO SECONDS
-    goal: number, //GOAL IN ETH - CONVERT TO WEI
-    minimumContribution: number, //MINIMUM CONTRIBUTION IN ETH - CONVERT TO WEI
-    initialPaymentDuration: number, //SET FIXED TO 0
+    goal: string, //GOAL IN ETH - CONVERT TO WEI
+    minimumContribution: string, //MINIMUM CONTRIBUTION IN ETH - CONVERT TO WEI
 }
 
 const deployContract = async (provider: Web3, userData: userObject, fundraiserData: FundraiserData): Promise<userObject> => {
@@ -45,16 +44,16 @@ const deployContract = async (provider: Web3, userData: userObject, fundraiserDa
 
     //HANDLE FORMDATA
     let DEADLINE = Math.round(fundraiserData.form.deadline / GASINFO.block_time).toString();
-    let INITIAL_PAYMENT_DURATION  = fundraiserData.form.initialPaymentDuration.toString();
-    let GOAL = Web3.utils.toWei(fundraiserData.form.goal.toString(), 'ether');
-    let MINIMUM_CONTRIBUTION = Web3.utils.toWei(fundraiserData.form.minimumContribution.toString(), 'ether');
+    let GOAL = Web3.utils.toWei(fundraiserData.form.goal, 'ether');
+    let MINIMUM_CONTRIBUTION = Web3.utils.toWei(fundraiserData.form.minimumContribution, 'ether');
+
+    console.log(GOAL, MINIMUM_CONTRIBUTION)
 
     //BUILD CONTRACT WITH DATA
     const CONTRACT_DEPLOY = CONTRACT.deploy({
         data: FundraiserContract.bytecode,
         arguments: [
             DEADLINE, 
-            INITIAL_PAYMENT_DURATION, 
             GOAL, 
             MINIMUM_CONTRIBUTION
         ],

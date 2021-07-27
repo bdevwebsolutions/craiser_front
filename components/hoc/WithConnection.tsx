@@ -23,12 +23,6 @@ const WithConnection = WrappedComponent => props => {
           }
     },[isConnected, userData])
 
-    React.useEffect(() => {
-        if(!isConnected || userData === undefined){
-          Router.replace('/');
-        }
-    }, [])
-
     return <WrappedComponent userData={{...userData}} {...props}/>
 
 }

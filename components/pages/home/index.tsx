@@ -3,16 +3,25 @@ import React from 'react'
 
 //STYLES
 import styled from 'styled-components';
+import { ConnectionContext } from '../../../context/global/connectionContext';
 import { colors, highlights } from '../../../styles/colors';
 
 
 
 export const HomeScreen: React.FC = () => {
+
+    const {isConnected} = React.useContext(ConnectionContext);
+
     return (
     <Container>
         <Start>
             <div>
-                <h3>CONNECT YOUR WALLET TO CONTINUE OR FIND A FUNDRAISER BY ADDRESS.</h3>
+                {isConnected 
+                    ? 
+                        <Link href="/dashboard/projects"><h3>VIEW YOUR DASHBOARD</h3></Link>
+                    :
+                        <h3>CONNECT YOUR WALLET TO CONTINUE OR FIND A FUNDRAISER BY ADDRESS.</h3>
+                }
             </div>
             <div>
                 <p><Link href="/about">READ MORE ABOUT THE CRAISER_. DAPP</Link></p>

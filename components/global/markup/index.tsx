@@ -52,5 +52,10 @@ export const TextContainer = styled.div`
 export const TitleContainer = styled.div`
     border-bottom: solid 1px ${highlights.seven};
     margin-bottom: 15px;
+
+    p{
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
 `
 

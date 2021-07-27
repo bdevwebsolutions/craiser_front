@@ -45,6 +45,10 @@ export const ContractForm = ({onSubmit}) => {
             <label>Goal - In ETH</label>
             <input type="number" step="any" {...register('goal', {min: 0.000000001, required: true})}/>
             {errors.goal && <span>Required and has to be bigger than 0</span>}
+
+            <label>Minimum contribution - In ETH</label>
+            <input type="number" step="any" {...register('minimum', {min: 0.000000001, required: true})}/>
+            {errors.minimum && <span>Required and has to be bigger than 0</span>}
             
             <input type="submit"/>
         </Form>

@@ -2,7 +2,6 @@ import React from 'react'
 
 //STYLING
 import styled from 'styled-components';
-import { highlights } from '../../../styles/colors';
 import { H2, H3, TextContainer, TitleContainer } from '../../global/markup';
 
 const ContractInfo = () => {

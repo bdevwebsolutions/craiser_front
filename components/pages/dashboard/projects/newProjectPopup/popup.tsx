@@ -31,6 +31,7 @@ export type FormData = {
     organization: string,
     date: string,
     goal: string,
+    minimum: string,
 }
 
 
@@ -43,7 +44,7 @@ export const NewProjectPopup: React.FC<{provider: Web3, data: userObject}> = ({p
     const [deploymentError, setDeploymentError] = React.useState<string>("")
 
     //FORM SUBMIT
-    const onSubmit = async (formdata: FormData) => {
+    const onSubmit = (formdata: FormData) => {
 
         //TODO FIX THE INITIAL PAYEMENT DURATION
         console.log(formdata);
@@ -59,7 +60,6 @@ export const NewProjectPopup: React.FC<{provider: Web3, data: userObject}> = ({p
                 deadline, 
                 goal, 
                 minimumContribution, 
-                initialPaymentDuration: 0
             }
         });
 
@@ -84,7 +84,6 @@ export const NewProjectPopup: React.FC<{provider: Web3, data: userObject}> = ({p
                 form: {
                     deadline: contractData.form.deadline, 
                     goal: contractData.form.goal, 
-                    initialPaymentDuration: contractData.form.initialPaymentDuration, 
                     minimumContribution: contractData.form.minimumContribution,
                 }
             }

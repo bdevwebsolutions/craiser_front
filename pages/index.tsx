@@ -12,14 +12,6 @@ import Header from '../components/global/header';
 
 export default function Home() {
 
-  const {isConnected} = React.useContext(ConnectionContext);
-  const router = useRouter();
-
-  React.useEffect(() => {
-    if(isConnected){
-      router.push('/dashboard')
-    }
-  }, [])
 
   return (
     <>

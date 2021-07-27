@@ -19,6 +19,8 @@ import Web3 from 'web3';
 import { ContractDetails, getContractDetailsDeployer } from '../../../../lib/contract/fundraising/getFundraiserContract';
 import { LoadingPopup } from '../../../global/loader';
 import { useRouter } from 'next/router';
+import { contribute } from '../../../../lib/contract/fundraising/contribute';
+import { refund } from '../../../../lib/contract/fundraising/refund';
 
 
 
@@ -54,7 +56,7 @@ const Projects: React.FC = () => {
             { 
                 userData && userData.projects !== undefined ? 
                     <ListContainer>
-                        {userData.projects.map(el => {return <List address={el} provider={provider}/>})}
+                        {userData.projects.map(el => {return <List userData={userData} address={el} provider={provider}/>})}
                     </ListContainer>
                 : null
             }
@@ -63,7 +65,7 @@ const Projects: React.FC = () => {
 }
 
 
-const List: React.FC<{address: string, provider: Web3}> = ({address, provider}) => {
+const List: React.FC<{userData, address: string, provider: Web3}> = ({userData, address, provider}) => {
 
     const [details, setDetails] = React.useState<ContractDetails>();
     const router = useRouter();
@@ -75,8 +77,9 @@ const List: React.FC<{address: string, provider: Web3}> = ({address, provider}) 
     
     getContractData();
 
+    // 
     return (
-    <ListItem onClick={() => {router.push(`project/${encodeURIComponent(address)}`)}}>
+    <ListItem onClick={() => {router.push(`project/${encodeURIComponent(address)}`)}} >
         {details ? (
             <>
                 <Paragraph><Span>GOAL: </Span>{details.GOAL}</Paragraph>
@@ -91,7 +94,15 @@ const List: React.FC<{address: string, provider: Web3}> = ({address, provider}) 
 
 const ListContainer = styled.ul`
 
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    margin: 0px;
     padding: 0px;
+    grid-gap: 15px;
+
+    @media only screen and (max-width: 1050px){
+        grid-template-columns: 1fr;
+    }
 
 `
 
@@ -100,11 +111,18 @@ const ListItem = styled.li`
     list-style-type: none;
     background-color: ${colors.two};
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
     height: auto;
     padding: 10px;
     cursor: pointer;
     margin-bottom: 15px;
+
+    button{
+        position: relative;
+        z-index: 99;
+        cursor: pointer;
+        color: black
+    }
 
     :hover{
         font-weight: bold;
@@ -137,6 +155,10 @@ const NewButton = styled.button`
     padding: 10px 0px;
     margin-bottom: 35px;
     max-width: 120px;
+
+    @media only screen and (max-width: 1050px){
+        margin-top: 15px;
+    }
 `
 
 
