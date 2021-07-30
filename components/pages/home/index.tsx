@@ -16,11 +16,10 @@ export const HomeScreen: React.FC = () => {
     <Container>
         <Start>
             <div>
-                {isConnected 
-                    ? 
-                        <Link href="/dashboard/projects"><h3>VIEW YOUR DASHBOARD</h3></Link>
+                {isConnected ? 
+                    <Link href="/dashboard/projects"><h3 style={{cursor: "pointer"}}>VIEW YOUR DASHBOARD</h3></Link>
                     :
-                        <h3>CONNECT YOUR WALLET TO CONTINUE OR FIND A FUNDRAISER BY ADDRESS.</h3>
+                    <h3>CONNECT YOUR WALLET TO CONTINUE OR FIND A FUNDRAISER BY ADDRESS.</h3>
                 }
             </div>
             <div>
@@ -58,6 +57,7 @@ export const Title = styled.div`
 
 export const Start = styled.div`
     display: grid;
+
 
 
     div{

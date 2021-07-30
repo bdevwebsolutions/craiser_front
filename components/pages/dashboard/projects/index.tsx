@@ -19,8 +19,6 @@ import Web3 from 'web3';
 import { ContractDetails, getContractDetailsDeployer } from '../../../../lib/contract/fundraising/getFundraiserContract';
 import { LoadingPopup } from '../../../global/loader';
 import { useRouter } from 'next/router';
-import { contribute } from '../../../../lib/contract/fundraising/contribute';
-import { refund } from '../../../../lib/contract/fundraising/refund';
 
 
 
@@ -74,28 +72,30 @@ const List: React.FC<{userData, address: string, provider: Web3}> = ({userData, 
         let res = await getContractDetailsDeployer(address, provider)
         setDetails(res);
     }
-    
-    getContractData();
+    React.useEffect(() => {
+        getContractData();
+    }, [])
 
-    // 
-    return (
-    <ListItem onClick={() => {router.push(`project/${encodeURIComponent(address)}`)}} >
-        {details ? (
-            <>
-                <Paragraph><Span>GOAL: </Span>{details.GOAL}</Paragraph>
-                <Paragraph><Span>AMOUNT RAISED: </Span>{details.AMOUNT_RAISED}</Paragraph>
-                <Paragraph><Span>PROGRESS: </Span>{details.PROGRESS}</Paragraph>
-                <Paragraph><Span>TOTAL AMOUNT OF CONTRIBUTORS: </Span>{details.TOTAL_CONTRIBUTORS}</Paragraph>
-            </>
-        ) : <LoadingPopup/>}
-    </ListItem>
-    )
+
+    if(details){
+        return(
+        <ListItem onClick={() => {router.push(`project/${encodeURIComponent(address)}`)}} >
+            <Paragraph><Span>GOAL: </Span>{details.GOAL}</Paragraph>
+            <Paragraph><Span>AMOUNT RAISED: </Span>{details.AMOUNT_RAISED}</Paragraph>
+            <Paragraph><Span>PROGRESS: </Span>{details.PROGRESS}</Paragraph>
+            <Paragraph><Span>TOTAL AMOUNT OF CONTRIBUTORS: </Span>{details.TOTAL_CONTRIBUTORS}</Paragraph>
+            <Paragraph><Span>ADDRESS: </Span>{address}</Paragraph>
+        </ListItem>
+        )
+    } else {
+        return <LoadingPopup/>
+    }
 }
 
 const ListContainer = styled.ul`
 
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     margin: 0px;
     padding: 0px;
     grid-gap: 15px;
@@ -111,7 +111,7 @@ const ListItem = styled.li`
     list-style-type: none;
     background-color: ${colors.two};
     display: grid;
-    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     height: auto;
     padding: 10px;
     cursor: pointer;

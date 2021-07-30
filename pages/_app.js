@@ -5,7 +5,7 @@ import "nprogress/nprogress.css";
 
 
 NProgress.configure({
-  minimum: 0.5,
+  minimum: 0.2,
   showSpinner: false,
   easing: "ease",
   speed: 800,

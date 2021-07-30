@@ -10,14 +10,6 @@ const userSchema = new mongoose.Schema({
         type: [{type: String}],
         required: false,
     },
-    upvotes: {
-        type: [{type: String}],
-        required: false,
-    },
-    following: {
-        type: [{type: String}],
-        required: false,
-    },
     funding: {
         type: [{type: String}],
         required: false,

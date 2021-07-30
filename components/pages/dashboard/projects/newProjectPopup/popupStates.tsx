@@ -39,7 +39,7 @@ export const Deploying: React.FC = () => {
     return (
         <>
             <H4>CONTRACT IS BEING DEPLOYED</H4>
-            <p>A confirmation prompt wil be shown on your connected wallet</p>
+            <p>A confirmation prompt wil be shown on your connected wallet, wait till this window disappears.</p>
         </>
     )
 }

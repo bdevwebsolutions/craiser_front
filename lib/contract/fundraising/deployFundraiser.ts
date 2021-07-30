@@ -70,8 +70,8 @@ const deployContract = async (provider: Web3, userData: userObject, fundraiserDa
     //DEPLOY CONTRACT
     let DEPLOYED_CONTRACT = await CONTRACT_DEPLOY.send({
         from: userData.walletAddress,
-        gas: GASAMOUNT,
-        gasPrice: GASINFO.average.toString(),
+        gas: Math.round(GASAMOUNT / 100 * 105),
+        gasPrice: Web3.utils.toWei((GASINFO.average / 10).toString(), 'Gwei'),
     }).then(async (newContractInstance) => {
         //VERIFY CONTRACT
         console.log(`
@@ -101,11 +101,11 @@ const deployContract = async (provider: Web3, userData: userObject, fundraiserDa
 }
 
 //UPDATES DATABASE AND RETURNS USERDATA OR FALSE
-const updateDB = async (contractAddress, title, description, organization, walletAddress, goal) => {
+const updateDB = async (contractAddress, title, description, organization, walletAddress) => {
     
-    let params = {contractAddress, contractTitle: title, contractDescription: description, contractOrganization: organization, walletAddress, contractGoal: goal};
+    let params = {contractAddress, contractTitle: title, contractDescription: description, contractOrganization: organization, walletAddress};
     
-    let data = await fetch(`/api/fundraiser/${contractAddress}`, {
+    let data = await fetch(`/api/contract/${contractAddress}`, {
         method: 'POST',
         mode: 'cors',
         headers: {

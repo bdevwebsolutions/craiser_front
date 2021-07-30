@@ -68,9 +68,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             title: contractTitle,
             description: contractDescription,
             organization: contractOrganization,
-            upvotes: 0,
-            goal: contractGoal,
-            donated: 0,
         })
 
         //Save project

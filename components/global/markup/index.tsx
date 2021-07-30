@@ -31,13 +31,13 @@ export const Span = styled.span`
 export const Paragraph = styled.p`
     font-size: 15px;
     margin-bottom: 15px;
-    word-break: break-all;
+    word-break: normal;
 `
 
 export const Textblock = styled.div`
     margin-bottom: 15px;
     padding: 15px;
-    word-break: break-all;
+    word-break: normal;
 `
 
 //CONTAINERS
@@ -46,7 +46,7 @@ export const TextContainer = styled.div`
     max-width: 1200px;
     width: 100%;
     padding-top: 35px;
-    word-break: break-all;
+    word-break: normal;
 `
 
 export const TitleContainer = styled.div`
