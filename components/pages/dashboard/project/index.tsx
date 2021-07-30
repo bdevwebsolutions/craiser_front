@@ -31,6 +31,7 @@ const Project: React.FC = () => {
     const router = useRouter();
     const [details, setDetails] = React.useState<ContractDetails>()
     const [dbData, setdbData] = React.useState<dbData>();
+    const [render, setRender] = React.useState<boolean>(false);
 
     const getContractData = async () => {
         //@ts-ignore
@@ -49,32 +50,36 @@ const Project: React.FC = () => {
     }
     
     React.useEffect(() => {
-        getContractData();
+        if(document){
+            getContractData();
+            setRender(true);
+        }
     }, [])
 
 
-
-    if(details && dbData){
-        return(
-            <DashboardContent>
-                <TitleContainer>
-                    <H2>PROJECT {dbData.title}</H2>
-                    <Paragraph><Span>ADDRESS: </Span>{router.query.address}</Paragraph>
-                </TitleContainer>
-            </DashboardContent>
-        )
+    if(render){
+        if(details && dbData && document){
+            return(
+                <DashboardContent>
+                    <TitleContainer>
+                        <H2>PROJECT {dbData.title}</H2>
+                        <Paragraph><Span>ADDRESS: </Span>{router.query.address}</Paragraph>
+                    </TitleContainer>
+                </DashboardContent>
+            )
+        } else if (document){
+            return(
+                <DashboardContent>
+                    <LoadingPopup/>
+                </DashboardContent>
+            )
+        }
     } else {
-        return(
-            <DashboardContent>
-                <LoadingPopup/>
-            </DashboardContent>
-        )
+        return null;
     }
 
+
 }
-
-
-
 
 
 export default Project;

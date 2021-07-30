@@ -1,6 +1,5 @@
 
 import Web3 from "web3"
-import { userObject } from "../../../context/global/userContext"
 import FundraiserContract from '../../../contracts/FundRaiser.json';
 
 export const refund = async (key: string, provider: Web3, userAddress): Promise<boolean> => {

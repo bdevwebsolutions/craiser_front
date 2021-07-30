@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const {projectSchema} = require('./project.model');
 
 const userSchema = new mongoose.Schema({
     walletAddress: {
